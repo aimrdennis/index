@@ -5,6 +5,9 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+
+    // 👇 TAMBAHKAN INI
+    popular: z.boolean().optional(),
   }),
 });
 
