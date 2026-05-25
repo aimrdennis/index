@@ -528,7 +528,10 @@ grid-template-columns:1fr 1fr;
 /* =========================
    FOOTER MODERN
 ========================= */
-
+.footer-modern .container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
 .footer-modern{
   padding:90px 0 30px;
   border-top:1px solid var(--border);
