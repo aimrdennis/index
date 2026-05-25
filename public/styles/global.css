@@ -472,11 +472,26 @@ padding:90px 0 30px;
 border-top:1px solid var(--border);
 }
 .footer-grid{
-display:grid;
-grid-template-columns:2fr 1fr 2fr 2fr;
-gap:50px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 32px;
 }
 
+.footer-about{
+  grid-column: span 3;
+}
+
+.footer-service{
+  grid-column: span 2;
+}
+
+.footer-links.latest{
+  grid-column: span 3;
+}
+
+.footer-links.popular{
+  grid-column: span 4;
+}
 
 .footer-about h3{
 font-size:26px;
