@@ -3,6 +3,7 @@ title: "Ai Mr Dennis dan Perkembangan Aplikasi AI untuk Website Cepat"
 description: "Ai Mr Dennis fokus pada pengembangan aplikasi AI, website modern, automation, dan digital growth dengan pendekatan yang lebih ringan dan efisien."
 slug: "ai-mr-dennis-aplikasi-ai-website-cepat"
 pubDate: 2026-05-25
+popular: true
 ---
 
 # Ai Mr Dennis dan Perkembangan Aplikasi AI untuk Website Cepat
