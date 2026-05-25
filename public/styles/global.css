@@ -540,7 +540,7 @@ grid-template-columns:1fr 1fr;
 
 .footer-grid{
   display: grid;
-  grid-template-columns: 1.2fr 0.9fr 1.5fr 1.5fr;
+  grid-template-columns: 1.2fr 0.9fr 1.2fr 1.2fr;
   gap: 32px;
   align-items: start;
 }
