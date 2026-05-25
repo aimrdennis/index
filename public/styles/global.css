@@ -525,39 +525,30 @@ grid-template-columns:1fr 1fr;
 
 
 
-/* FOOTER */
+/* =========================
+   FOOTER MODERN
+========================= */
 
 .footer-modern{
   padding:90px 0 30px;
   border-top:1px solid var(--border);
 }
 
-/* GRID LAYOUT */
+/* =========================
+   GRID LAYOUT (FIXED MODERN)
+========================= */
+
 .footer-grid{
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: 1.2fr 0.9fr 1.6fr 1.6fr;
   gap: 32px;
   align-items: start;
 }
 
-/* COLUMN WIDTH */
-.footer-about{
-  grid-column: span 3;
-}
+/* =========================
+   ABOUT
+========================= */
 
-.footer-service{
-  grid-column: span 2;
-}
-
-.footer-links.latest{
-  grid-column: span 4;
-}
-
-.footer-links.popular{
-  grid-column: span 3;
-}
-
-/* ABOUT */
 .footer-about h3{
   font-size:26px;
   margin-bottom:18px;
@@ -569,7 +560,23 @@ grid-template-columns:1fr 1fr;
   margin-bottom:10px;
 }
 
-/* LINKS GENERAL */
+/* =========================
+   SERVICE / SOCIAL
+========================= */
+
+.footer-service h4{
+  margin-bottom:10px;
+  font-size:18px;
+}
+
+.footer-service h4:not(:first-child){
+  margin-top:18px;
+}
+
+/* =========================
+   LINKS (LATEST + POPULAR)
+========================= */
+
 .footer-links{
   display:flex;
   flex-direction:column;
@@ -587,26 +594,23 @@ grid-template-columns:1fr 1fr;
   line-height:1.4;
   opacity:0.85;
 
-  /* UX clean */
+  /* clean text */
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
+
+  transition:0.2s;
 }
 
 .footer-links a:hover{
   opacity:1;
+  transform:translateX(4px);
 }
 
-/* SERVICE / SOCIAL SPACING */
-.footer-service h4{
-  margin-bottom:10px;
-}
+/* =========================
+   FOOTER BOTTOM
+========================= */
 
-.footer-service h4:not(:first-child){
-  margin-top:18px;
-}
-
-/* BOTTOM */
 .footer-bottom{
   margin-top:60px;
   padding-top:24px;
@@ -617,7 +621,7 @@ grid-template-columns:1fr 1fr;
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE TABLET
 ========================= */
 
 @media(max-width:768px){
@@ -631,10 +635,6 @@ grid-template-columns:1fr 1fr;
     grid-column:1/-1;
   }
 
-  .footer-links{
-    gap:12px;
-  }
-
   .footer-about h3{
     font-size:22px;
   }
@@ -646,7 +646,6 @@ grid-template-columns:1fr 1fr;
 
   .footer-links h4{
     font-size:16px;
-    margin-bottom:10px;
   }
 
   .footer-links a{
@@ -658,6 +657,10 @@ grid-template-columns:1fr 1fr;
     font-size:13px;
   }
 }
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
