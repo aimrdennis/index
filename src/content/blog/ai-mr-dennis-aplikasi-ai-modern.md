@@ -3,6 +3,7 @@ title: "Kenapa Ai Mr Dennis Fokus pada Aplikasi AI dan Digital Growth Modern"
 description: "Ai Mr Dennis menghadirkan pendekatan modern dalam pengembangan aplikasi AI, automation, dan digital growth untuk membantu bisnis berkembang lebih efisien."
 slug: "ai-mr-dennis-aplikasi-ai-modern"
 pubDate: 2026-05-25
+popular: true
 ---
 
 # Kenapa Ai Mr Dennis Fokus pada Aplikasi AI dan Digital Growth Modern
