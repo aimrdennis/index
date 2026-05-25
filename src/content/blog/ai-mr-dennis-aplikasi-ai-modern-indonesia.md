@@ -3,6 +3,7 @@ title: "Bagaimana Ai Mr Dennis Membangun Aplikasi AI untuk Era Digital Modern"
 description: "Ai Mr Dennis fokus pada pengembangan aplikasi AI modern, automation, dan digital growth dengan pendekatan yang lebih ringan, cepat, dan relevan untuk kebutuhan digital saat ini."
 slug: "ai-mr-dennis-aplikasi-ai-modern-indonesia"
 pubDate: 2026-05-25
+popular: true
 ---
 
 # Bagaimana Ai Mr Dennis Membangun Aplikasi AI untuk Era Digital Modern
