@@ -1,59 +1,93 @@
-
 ---
 import { SITE } from "../lib/site";
+import { getCollection } from "astro:content";
+
+let posts = await getCollection("blog");
+
+// Latest Posts
+const latestPosts = [...posts]
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
+  .slice(0, 5);
+
+// Popular Posts
+const popularPosts = [...posts]
+  .filter((post) => post.data.popular)
+  .slice(0, 5);
 ---
 
-<!-- FOOTER --> 
+<!-- FOOTER -->
+<footer class="footer-modern">
+  <div class="container">
 
-     <!-- FOOTER -->
-      <footer class="footer-modern">
-         <div class="container">
-            <div class="footer-grid">
-               <div class="footer-about">
-                  <h3>PRAGMATIKA.MEDIA</h3>
-                  <p>
-                     Landing page editorial modern dengan desain premium minimalis dan SEO optimized.
-                  </p>
-                  <p>
-                     Jakarta, Indonesia
-                  </p>
-                  <p>
-                     hello@yoursite.com
-                  </p>
-               </div>
-               <div class="footer-links">
-                  <h4>Company</h4>
-                  <a href="#">About</a>
-                  <a href="#">Services</a>
-                  <a href="#">Pricing</a>
-                  <a href="#">Contact</a>
-               </div>
-               <div class="footer-links">
-                  <h4>Categories</h4>
-                  <a href="#">SEO</a>
-                  <a href="#">Design</a>
-                  <a href="#">Affiliate</a>
-                  <a href="#">Branding</a>
-               </div>
-               <div class="footer-links">
-                  <h4>Social</h4>
-                  <a href="#">Instagram</a>
-                  <a href="#">Telegram</a>
-                  <a href="#">Facebook</a>
-                  <a href="#">Pinterest</a>
-               </div>
-               <div class="footer-links">
-                  <h4>Social</h4>
-                  <a href="#">Instagram</a>
-                  <a href="#">Telegram</a>
-                  <a href="#">Facebook</a>
-                  <a href="#">Pinterest</a>
-               </div>
-            </div>
-            <div class="footer-bottom">
-               <p>© {new Date().getFullYear()} {SITE.name}</p>
-            </div>
-         </div>
-      </footer>
+    <div class="footer-grid">
 
- 
+      <!-- ABOUT -->
+      <div class="footer-about">
+        <h3>PRAGMATIKA.MEDIA</h3>
+
+        <p>
+          Landing page editorial modern dengan desain premium
+          minimalis dan SEO optimized.
+        </p>
+
+        <p>Jakarta, Indonesia</p>
+
+        <p>hello@yoursite.com</p>
+      </div>
+
+      <!-- COMPANY -->
+      <div class="footer-links">
+        <h4>Company</h4>
+
+        <a href="/about">About</a>
+        <a href="/services">Services</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/contact">Contact</a>
+      </div>
+
+      <!-- LATEST POSTS -->
+      <div class="footer-links">
+        <h4>Latest Posts</h4>
+
+        {
+          latestPosts.map((post) => (
+            <a href={`/blog/${post.slug}/`}>
+              {post.data.title}
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- POPULAR POSTS -->
+      <div class="footer-links">
+        <h4>Popular Posts</h4>
+
+        {
+          popularPosts.map((post) => (
+            <a href={`/blog/${post.slug}/`}>
+              {post.data.title}
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- SOCIAL -->
+      <div class="footer-links">
+        <h4>Social</h4>
+
+        <a href="#">Instagram</a>
+        <a href="#">Telegram</a>
+        <a href="#">Facebook</a>
+        <a href="#">Pinterest</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © {new Date().getFullYear()} {SITE.name}
+      </p>
+    </div>
+
+  </div>
+</footer>
