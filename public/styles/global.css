@@ -528,7 +528,7 @@ grid-template-columns:1fr 1fr;
 /* =========================
    FOOTER MODERN
 ========================= */
-.footer-modern .container{
+.footer-modern {
   max-width: 1200px;
   margin: 0 auto;
 }
