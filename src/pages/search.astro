@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+---
+
+<h1>Search Articles</h1>
+
+<input id="searchInput" placeholder="Cari artikel..." />
+
+<div id="results">
+  {posts.map((post) => (
+    <a class="item" href={`/blog/${post.slug}/`}>
+      <h3>{post.data.title}</h3>
+      <p>{post.data.description}</p>
+    </a>
+  ))}
+</div>
+
+<script is:inline>
+  const input = document.getElementById("searchInput");
+  const items = document.querySelectorAll(".item");
+
+  input.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase();
+
+    items.forEach((item) => {
+      const text = item.innerText.toLowerCase();
+
+      item.style.display = text.includes(value)
+        ? "block"
+        : "none";
+    });
+  });
+</script>
