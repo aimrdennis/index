@@ -7,12 +7,12 @@ let posts = await getCollection("blog");
 // Latest Posts
 const latestPosts = [...posts]
   .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
-  .slice(0, 5);
+  .slice(0, 3);
 
 // Popular Posts
 const popularPosts = [...posts]
   .filter((post) => post.data.popular)
-  .slice(0, 5);
+  .slice(0, 3);
 ---
 
 <!-- FOOTER -->
