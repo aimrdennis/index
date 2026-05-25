@@ -7,12 +7,12 @@ let posts = await getCollection("blog");
 // Latest Posts
 const latestPosts = [...posts]
   .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
-  .slice(0, 3);
+  .slice(0, 5);
 
 // Popular Posts
 const popularPosts = [...posts]
   .filter((post) => post.data.popular)
-  .slice(0, 3);
+  .slice(0, 5);
 ---
 
 <!-- FOOTER -->
@@ -53,7 +53,7 @@ const popularPosts = [...posts]
 
 
       <!-- LATEST POSTS -->
-      <div class="footer-links">
+      <div class="footer-links latest">
         <h4>Latest Posts</h4>
 
         {
@@ -66,7 +66,7 @@ const popularPosts = [...posts]
       </div>
 
       <!-- POPULAR POSTS -->
-      <div class="footer-links">
+      <div class="footer-links popular">
         <h4>Popular Posts</h4>
 
         {
