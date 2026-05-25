@@ -1,0 +1,97 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { SITE } from "../../lib/site";
+import "../../styles/blog.css";
+import { getCollection } from "astro:content";
+
+let posts = await getCollection("blog");
+
+posts = posts.sort(
+  (a, b) => new Date(b.data.date) - new Date(a.data.date)
+);
+---
+
+<MainLayout
+  title={`Blog | ${SITE.title}`}
+  description={SITE.description}
+  canonical={SITE.url("/blog")}
+>
+
+<section class="blog-page">
+
+  <div class="container">
+
+    <div class="page-wrap">
+
+      <div class="page-hero center small">
+
+        <h1>Blog</h1>
+
+        <p>
+          Explore modern articles, AI tools,
+          Cloudflare Workers tutorials,
+          Astro guides, and web development insights.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="blog-grid">
+
+      {posts.map((post) => (
+
+        <article class="blog-card">
+
+          <a
+            href={`/blog/${post.slug}/`}
+            class="blog-card-link"
+          >
+
+            <div class="blog-card-image">
+
+              <img
+                src={SITE.url(`/api/og/${post.slug}.svg`)}
+                alt={post.data.title}
+                loading="lazy"
+                width="1200"
+                height="630"
+              />
+
+            </div>
+
+            <div class="blog-card-content">
+
+              <div class="blog-card-meta">
+                {post.data.date}
+              </div>
+
+              <h2>
+                {post.data.title}
+              </h2>
+
+              {post.data.description && (
+                <p>
+                  {post.data.description}
+                </p>
+              )}
+
+              <span class="readmore">
+                Read Article →
+              </span>
+
+            </div>
+
+          </a>
+
+        </article>
+
+      ))}
+
+    </div>
+
+  </div>
+
+</section>
+
+</MainLayout>
