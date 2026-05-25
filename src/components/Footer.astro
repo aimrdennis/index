@@ -11,7 +11,7 @@ const latestPosts = [...posts]
 
 // Popular Posts
 const popularPosts = [...posts]
-  .filter((post) => post.data.popular)
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
   .slice(0, 5);
 ---
 
