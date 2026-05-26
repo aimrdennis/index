@@ -366,8 +366,20 @@ transform:translateY(-2px);
 }
 
 /* article-image */
-.article-image{margin-bottom:40px}
-.article-image img{width:100%;height:auto;display:block;border-radius:24px;border:1px solid var(--border)}
+.article-image img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:24px;
+  border:1px solid var(--border);
+}
+
+.article-content img{
+  width:100%;
+  height:auto;
+  border-radius:20px;
+  margin:30px 0;
+}
 
 /* FEATURED IMAGE */
 
