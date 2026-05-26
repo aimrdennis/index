@@ -138,61 +138,6 @@ align-items:center;
 gap:18px;
 }
 
-/* =========================
-   THEME BUTTON
-========================= */
-.theme-btn{
-position:relative;
-
-width:46px;
-height:46px;
-
-border:none;
-background:none;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-color:var(--text);
-
-cursor:pointer;
-}
-
-.theme-btn svg{
-position:absolute;
-
-width:22px;
-height:22px;
-
-transition:
-opacity .25s ease,
-transform .25s ease;
-}
-
-/* DEFAULT DARK */
-
-.moon-icon{
-opacity:1;
-transform:scale(1);
-}
-
-.sun-icon{
-opacity:0;
-transform:scale(.5);
-}
-
-/* LIGHT */
-
-html.light-mode .moon-icon{
-opacity:0;
-transform:scale(.5);
-}
-
-html.light-mode .sun-icon{
-opacity:1;
-transform:scale(1);
-}
 
 
 /* =========================
@@ -640,4 +585,50 @@ font-size:38px;
 grid-template-columns:1fr 1fr;
 }
 
+}
+
+
+
+/* =========================
+   THEME BUTTON
+========================= */
+.theme-btn{
+position:relative;
+width:46px;
+height:46px;
+border:none;
+background:none;
+color:var(--text);
+cursor:pointer;
+}
+
+.theme-btn svg{
+position:absolute;
+inset:0;
+margin:auto;
+
+width:22px;
+height:22px;
+
+transition:.25s ease;
+}
+
+/* DEFAULT DARK */
+
+.moon-icon{
+opacity:1;
+}
+
+.sun-icon{
+opacity:0;
+}
+
+/* LIGHT */
+
+html.light-mode .moon-icon{
+opacity:0;
+}
+
+html.light-mode .sun-icon{
+opacity:1;
 }
