@@ -97,47 +97,36 @@ const popularPosts = [...posts]
 
 
 <style>
-/* =========================
-   FOOTER MODERN (FINAL CLEAN)
-========================= */
-
 .footer-modern {
   padding: 80px 0 26px;
   border-top: 1px solid var(--border);
-
-  background: linear-gradient(
-    180deg,
-    rgba(20, 24, 34, 0.96),
-    rgba(12, 15, 22, 1)
-  );
+  background: linear-gradient(180deg, rgba(20,24,34,.96), rgba(12,15,22,1));
 }
 
-/* CONTAINER */
+/* container */
 .footer-modern .container {
-  width: 100%;
-  max-width: 1200px;
+  max-width: var(--container);
   margin: auto;
   padding: 0 20px;
-  box-sizing: border-box;
 }
 
-/* GRID */
+/* ⭐ FIX UTAMA DI SINI */
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  /* PROPORTIONAL LAYOUT (INI FIX OVERFLOW) */
+  grid-template-columns: 1.4fr 1.4fr 0.8fr 1fr;
+
   gap: 40px;
   align-items: start;
 }
 
-/* FIX OVERFLOW */
+/* prevent shrink issue */
 .footer-grid > * {
   min-width: 0;
 }
 
-/* =========================
-   ABOUT
-========================= */
-
+/* ABOUT */
 .footer-about h4 {
   font-size: 18px;
   margin-bottom: 16px;
@@ -145,17 +134,13 @@ const popularPosts = [...posts]
 }
 
 .footer-about p {
-  color: var(--soft);
+  color: var(--text-soft);
   font-size: 15px;
   line-height: 1.9;
-  margin-bottom: 14px;
-  overflow-wrap: break-word;
+  margin-bottom: 12px;
 }
 
-/* =========================
-   HEADINGS
-========================= */
-
+/* HEADINGS */
 .footer-links h4,
 .footer-service h4 {
   font-size: 18px;
@@ -163,69 +148,46 @@ const popularPosts = [...posts]
   color: #fff;
 }
 
-/* =========================
-   LINKS
-========================= */
-
+/* LINKS */
 .footer-links a,
 .footer-service a {
   display: block;
-  color: var(--soft);
-  text-decoration: none;
-
+  color: var(--text-soft);
   font-size: 15px;
   line-height: 1.7;
-
   margin-bottom: 12px;
-
-  transition: 0.25s ease;
+  transition: .25s ease;
 }
 
-/* hover */
 .footer-links a:hover,
 .footer-service a:hover {
   color: #fff;
   transform: translateX(4px);
 }
 
-/* =========================
-   COMPANY + SOCIAL
-========================= */
-
+/* SERVICE GRID (IMPORTANT FIX) */
 .footer-service {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
 }
 
-.footer-col h4 {
-  margin-bottom: 14px;
-}
-
+/* COLUMN INTERNAL */
 .footer-col a {
-  display: block;
   margin-bottom: 10px;
 }
 
-/* =========================
-   FOOTER BOTTOM
-========================= */
-
+/* FOOTER BOTTOM */
 .footer-bottom {
   margin-top: 70px;
   padding-top: 26px;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-
+  border-top: 1px solid rgba(255,255,255,.08);
   text-align: center;
-  color: var(--soft);
+  color: var(--text-soft);
   font-size: 14px;
 }
 
-/* =========================
-   TABLET
-========================= */
-
+/* TABLET */
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
@@ -233,37 +195,15 @@ const popularPosts = [...posts]
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
-
+/* MOBILE */
 @media (max-width: 640px) {
-  .footer-modern {
-    padding: 60px 0 24px;
-  }
-
   .footer-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
   }
 
-  /* Company + Social jadi 2 kolom */
   .footer-service {
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-
-  .footer-about p,
-  .footer-links a,
-  .footer-service a {
-    font-size: 14px;
-  }
-
-  .footer-bottom {
-    margin-top: 50px;
-    font-size: 13px;
   }
 }
-
 </style>
 
