@@ -30,6 +30,66 @@ html.light{
 }
 
 
+
+/* THEME BUTTON */
+
+.theme-btn{
+width:46px;
+height:46px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+position:relative;
+
+border:none;
+border-radius:14px;
+
+background:var(--card);
+color:var(--text);
+
+cursor:pointer;
+
+transition:.25s;
+}
+
+.theme-btn svg{
+position:absolute;
+
+width:22px;
+height:22px;
+
+transition:
+opacity .25s ease,
+transform .25s ease;
+}
+
+/* DEFAULT = DARK */
+
+.sun-icon{
+opacity:0;
+transform:scale(.7) rotate(90deg);
+}
+
+.moon-icon{
+opacity:1;
+transform:scale(1) rotate(0);
+}
+
+/* LIGHT MODE */
+
+html.light .sun-icon{
+opacity:1;
+transform:scale(1) rotate(0);
+}
+
+html.light .moon-icon{
+opacity:0;
+transform:scale(.7) rotate(-90deg);
+}
+
+
 body{
 font-family:'Inter',sans-serif;
 background:var(--bg);
