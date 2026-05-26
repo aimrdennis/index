@@ -83,7 +83,7 @@ background .3s,
 border-color .3s;
 }
 
-html.light .main-header{
+html.light-mode .main-header{
 background:rgba(255,255,255,.82);
 }
 
@@ -181,12 +181,12 @@ transform:scale(1) rotate(0);
 
 /* LIGHT */
 
-html.light .moon-icon{
+html.light-mode .moon-icon{
 opacity:0;
 transform:scale(.6) rotate(-90deg);
 }
 
-html.light .sun-icon{
+html.light-mode .sun-icon{
 opacity:1;
 transform:scale(1) rotate(0);
 }
