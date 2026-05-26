@@ -262,42 +262,52 @@ const pageDescription =
       Artikel terbaru tentang AI, SEO dan teknologi modern.
     </p>
 
-    <div class="pricing">
+    <div class="blog-grid">
 
       {
         latestPosts.map((post) => (
 
-          <article class="price-card">
-
-            <!-- OG IMAGE -->
-            <a
-              href={`/blog/${post.slug}/`}
-              class="price-image"
-            >
-
-              <img
-                src={SITE.url(`/api/og/${post.slug}.svg`)}
-                alt={post.data.title}
-                loading="lazy"
-                width="1200"
-                height="630"
-              />
-
-            </a>
-
-            <h3>
-              {post.data.title}
-            </h3>
-
-            <p>
-              {post.data.description}
-            </p>
+          <article class="blog-card">
 
             <a
               href={`/blog/${post.slug}/`}
-              class="btn btn-primary"
+              class="blog-card-link"
             >
-              Read Article
+
+              <div class="blog-card-image">
+
+                <img
+                  src={SITE.url(`/api/og/${post.slug}.svg`)}
+                  alt={post.data.title}
+                  loading="lazy"
+                  width="1200"
+                  height="630"
+                />
+
+              </div>
+
+              <div class="blog-card-content">
+
+                <div class="blog-card-meta">
+                  {post.data.date}
+                </div>
+
+                <h2>
+                  {post.data.title}
+                </h2>
+
+                {post.data.description && (
+                  <p>
+                    {post.data.description}
+                  </p>
+                )}
+
+                <span class="readmore">
+                  Read Article →
+                </span>
+
+              </div>
+
             </a>
 
           </article>
@@ -324,42 +334,52 @@ const pageDescription =
       Artikel populer dalam ecosystem AI Mr Dennis.
     </p>
 
-    <div class="pricing">
+    <div class="blog-grid">
 
       {
         popularPosts.map((post) => (
 
-          <article class="price-card">
-
-            <!-- OG IMAGE -->
-            <a
-              href={`/blog/${post.slug}/`}
-              class="price-image"
-            >
-
-              <img
-                src={SITE.url(`/api/og/${post.slug}.svg`)}
-                alt={post.data.title}
-                loading="lazy"
-                width="1200"
-                height="630"
-              />
-
-            </a>
-
-            <h3>
-              {post.data.title}
-            </h3>
-
-            <p>
-              {post.data.description}
-            </p>
+          <article class="blog-card">
 
             <a
               href={`/blog/${post.slug}/`}
-              class="btn btn-primary"
+              class="blog-card-link"
             >
-              Read Guide
+
+              <div class="blog-card-image">
+
+                <img
+                  src={SITE.url(`/api/og/${post.slug}.svg`)}
+                  alt={post.data.title}
+                  loading="lazy"
+                  width="1200"
+                  height="630"
+                />
+
+              </div>
+
+              <div class="blog-card-content">
+
+                <div class="blog-card-meta">
+                  {post.data.date}
+                </div>
+
+                <h2>
+                  {post.data.title}
+                </h2>
+
+                {post.data.description && (
+                  <p>
+                    {post.data.description}
+                  </p>
+                )}
+
+                <span class="readmore">
+                  Read Guide →
+                </span>
+
+              </div>
+
             </a>
 
           </article>
