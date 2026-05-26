@@ -434,18 +434,7 @@ p {
   z-index: 9999;
 }
 
-/* FOOTER */
-footer {
-  margin-top: 80px;
-  padding: 40px 20px;
 
-  border-top: 1px solid var(--border);
-
-  text-align: center;
-  color: var(--muted);
-
-  font-size: 14px;
-}
 
 /* GRID */
 .grid {
