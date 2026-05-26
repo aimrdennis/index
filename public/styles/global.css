@@ -141,31 +141,22 @@ gap:18px;
 /* =========================
    THEME BUTTON
 ========================= */
-
 .theme-btn{
+position:relative;
+
 width:46px;
 height:46px;
+
+border:none;
+background:none;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-position:relative;
-
-border:none;
-border-radius:999px;
-
-background:transparent;
-
 color:var(--text);
 
 cursor:pointer;
-
-transition:.25s ease;
-}
-
-.theme-btn:hover{
-transform:translateY(-2px);
 }
 
 .theme-btn svg{
@@ -174,56 +165,35 @@ position:absolute;
 width:22px;
 height:22px;
 
-stroke:currentColor;
-
 transition:
 opacity .25s ease,
 transform .25s ease;
-
-will-change:
-opacity,
-transform;
 }
 
 /* DEFAULT DARK */
 
-.sun-icon{
-opacity:0;
-visibility:hidden;
-
-transform:
-rotate(90deg)
-scale(.5);
-}
-
 .moon-icon{
 opacity:1;
-visibility:visible;
-
-transform:
-rotate(0)
-scale(1);
+transform:scale(1);
 }
 
-/* LIGHT MODE */
-
-html.light-mode .sun-icon{
-opacity:1;
-visibility:visible;
-
-transform:
-rotate(0)
-scale(1);
+.sun-icon{
+opacity:0;
+transform:scale(.5);
 }
+
+/* LIGHT */
 
 html.light-mode .moon-icon{
 opacity:0;
-visibility:hidden;
-
-transform:
-rotate(-90deg)
-scale(.5);
+transform:scale(.5);
 }
+
+html.light-mode .sun-icon{
+opacity:1;
+transform:scale(1);
+}
+
 
 /* =========================
    MENU BUTTON
