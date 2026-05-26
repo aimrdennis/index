@@ -37,30 +37,17 @@ const faqSchema = generateFaqSchema(html);
 
 <script is:inline>
 
-const savedTheme =
-  localStorage.getItem("theme");
-
-if(savedTheme){
-
-  document.documentElement
-    .classList.toggle(
-      "light",
-      savedTheme === "light"
-    );
-
-}else{
-
-  const systemLight =
+if(
+  localStorage.getItem("theme")==="light" ||
+  (
+    !localStorage.getItem("theme") &&
     window.matchMedia(
       "(prefers-color-scheme: light)"
-    ).matches;
-
+    ).matches
+  )
+){
   document.documentElement
-    .classList.toggle(
-      "light",
-      systemLight
-    );
-
+    .classList.add("light");
 }
 
 </script>
@@ -110,36 +97,23 @@ faqItems.forEach(item=>{
 
 
 /* LOAD THEME */
-
 const savedTheme =
   localStorage.getItem("theme");
 
-if(savedTheme){
-
-  document.documentElement
-    .classList.toggle(
-      "light",
-      savedTheme === "light"
-    );
-
-}else{
-
-  const systemLight =
+if(
+  savedTheme === "light" ||
+  (
+    !savedTheme &&
     window.matchMedia(
       "(prefers-color-scheme: light)"
-    ).matches;
-
+    ).matches
+  )
+){
   document.documentElement
-    .classList.toggle(
-      "light",
-      systemLight
-    );
-
+    .classList.add("light");
 }
 
-/* TOGGLE THEME */
-
-window.toggleTheme = function(){
+window.toggleTheme = () => {
 
   document.documentElement
     .classList.toggle("light");
@@ -154,7 +128,6 @@ window.toggleTheme = function(){
   );
 
 };
-         
       </script>
 
 </body>
