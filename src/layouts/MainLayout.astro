@@ -35,22 +35,7 @@ const faqSchema = generateFaqSchema(html);
   />
   <link rel="stylesheet" href="/styles/global.css" />
 
-<script is:inline>
 
-if(
-  localStorage.getItem("theme")==="light" ||
-  (
-    !localStorage.getItem("theme") &&
-    window.matchMedia(
-      "(prefers-color-scheme: light)"
-    ).matches
-  )
-){
-  document.documentElement
-    .classList.add("light");
-}
-
-</script>
 
 </head>
 
