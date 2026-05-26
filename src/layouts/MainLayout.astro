@@ -35,36 +35,6 @@ const faqSchema = generateFaqSchema(html);
   />
   <link rel="stylesheet" href="/styles/global.css" />
 
-
-  <script is:inline>
-
-    const savedTheme =
-      localStorage.getItem("theme");
-
-    if(
-
-      savedTheme === "dark"
-
-      ||
-
-      (
-
-        !savedTheme &&
-
-        window.matchMedia(
-          "(prefers-color-scheme: dark)")
-          .matches
-
-      )
-
-    ){
-
-      document.documentElement
-        .classList.add("dark");
-
-    }
-
-  </script>
 </head>
 
 <body>
@@ -112,45 +82,25 @@ faqItems.forEach(item=>{
 
 <script is:inline>
 
-/* AUTO THEME */
-
-const savedTheme =
-  localStorage.getItem("theme");
-
 if(
-
-  savedTheme === "dark"
-
-  ||
-
-  (
-
-    !savedTheme &&
-
-    window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches
-
-  )
-
+  localStorage.getItem("theme") === "light"
 ){
-  document.body.classList.add("dark");
+  document.documentElement
+    .classList.add("light");
 }
-
-/* TOGGLE */
 
 window.toggleTheme = function(){
 
-  document.body
-    .classList.toggle("dark");
+  document.documentElement
+    .classList.toggle("light");
 
   localStorage.setItem(
     "theme",
 
-    document.body
-      .classList.contains("dark")
-        ? "dark"
-        : "light"
+    document.documentElement
+      .classList.contains("light")
+        ? "light"
+        : "dark"
   );
 
 };
