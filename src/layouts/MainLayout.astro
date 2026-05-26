@@ -82,6 +82,30 @@ faqItems.forEach(item=>{
 
 <script is:inline>
 
+window.toggleMenu = function(){
+  document
+    .getElementById("navMenu")
+    .classList.toggle("active");
+};
+
+window.toggleTheme = function(){
+
+  const html =
+    document.documentElement;
+
+  html.classList.toggle("light");
+
+  localStorage.setItem(
+    "theme",
+    html.classList.contains("light")
+      ? "light"
+      : "dark"
+  );
+
+};
+
+/* LOAD THEME */
+
 if(
   localStorage.getItem("theme") === "light"
 ){
@@ -89,23 +113,6 @@ if(
     .classList.add("light");
 }
 
-window.toggleTheme = function(){
-
-  document.documentElement
-    .classList.toggle("light");
-
-  localStorage.setItem(
-    "theme",
-
-    document.documentElement
-      .classList.contains("light")
-        ? "light"
-        : "dark"
-  );
-
-};
-
 </script>
-
 </body>
 </html>
