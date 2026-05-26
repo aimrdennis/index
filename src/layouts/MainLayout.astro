@@ -36,7 +36,35 @@ const faqSchema = generateFaqSchema(html);
   <link rel="stylesheet" href="/styles/global.css" />
 
 
+  <script is:inline>
 
+    const savedTheme =
+      localStorage.getItem("theme");
+
+    if(
+
+      savedTheme === "dark"
+
+      ||
+
+      (
+
+        !savedTheme &&
+
+        window.matchMedia(
+          "(prefers-color-scheme: dark)")
+          .matches
+
+      )
+
+    ){
+
+      document.documentElement
+        .classList.add("dark");
+
+    }
+
+  </script>
 </head>
 
 <body>
