@@ -35,20 +35,25 @@ const popularPosts = [...posts]
       </div>
 
    <!-- COMPANY -->
-      <div class="footer-service">
-        <h4>Company</h4>
+<div class="footer-service">
+  <div class="footer-col">
+    <h4>Company</h4>
 
-        <a href="/about">About</a>
-        <a href="/services">Services</a>
-        <a href="/pricing">Pricing</a>
-        <a href="/contact">Contact</a>
-        <h4>Social</h4>
+    <a href="/about">About</a>
+    <a href="/services">Services</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/contact">Contact</a>
+  </div>
 
-        <a href="#">Instagram</a>
-        <a href="#">Telegram</a>
-        <a href="#">Facebook</a>
-        <a href="#">Pinterest</a>
-      </div>
+  <div class="footer-col">
+    <h4>Social</h4>
+
+    <a href="#">Instagram</a>
+    <a href="#">Telegram</a>
+    <a href="#">Facebook</a>
+    <a href="#">Pinterest</a>
+  </div>
+</div>
 
 
 
@@ -297,6 +302,29 @@ footer {
 
 }
 
+/* desktop */
+.footer-service {
+  display: block;
+}
+
+/* mobile layout split */
+@media (max-width: 640px) {
+  .footer-service {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .footer-col h4 {
+    margin-bottom: 14px;
+  }
+
+  .footer-col a {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+}
+
 /* =========================
    MOBILE
 ========================= */
@@ -344,3 +372,4 @@ footer {
 }
 
 </style>
+
