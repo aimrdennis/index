@@ -44,27 +44,25 @@ const popularPosts = [...posts]
   </div>
 
   <!-- COMPANY + SOCIAL -->
-  <div class="footer-service">
+ <div class="footer-service">
 
-    <div class="footer-col">
-      <h4>Company</h4>
-
-      <a href="/about">About</a>
-      <a href="/services">Services</a>
-      <a href="/pricing">Pricing</a>
-      <a href="/contact">Contact</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Social</h4>
-
-      <a href="#">Instagram</a>
-      <a href="#">Telegram</a>
-      <a href="#">Facebook</a>
-      <a href="#">Pinterest</a>
-    </div>
-
+  <div class="footer-col">
+    <h4>Company</h4>
+    <a href="/about">About</a>
+    <a href="/services">Services</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/contact">Contact</a>
   </div>
+
+  <div class="footer-col">
+    <h4>Social</h4>
+    <a href="#">Instagram</a>
+    <a href="#">Telegram</a>
+    <a href="#">Facebook</a>
+    <a href="#">Pinterest</a>
+  </div>
+
+</div>
 
   <!-- ABOUT -->
   <div class="footer-about">
@@ -97,36 +95,52 @@ const popularPosts = [...posts]
 
 
 <style>
+
+/* =========================
+   FOOTER MODERN (FINAL)
+========================= */
+
 .footer-modern {
   padding: 80px 0 26px;
   border-top: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(20,24,34,.96), rgba(12,15,22,1));
+
+  background: linear-gradient(
+    180deg,
+    rgba(20, 24, 34, 0.96),
+    rgba(12, 15, 22, 1)
+  );
 }
 
-/* container */
+/* =========================
+   CONTAINER
+========================= */
+
 .footer-modern .container {
   max-width: var(--container);
   margin: auto;
   padding: 0 20px;
 }
 
-/* ⭐ FIX UTAMA DI SINI */
+/* =========================
+   GRID (DESKTOP 4 KOLOM FIX)
+========================= */
+
 .footer-grid {
   display: grid;
-
-  /* PROPORTIONAL LAYOUT (INI FIX OVERFLOW) */
-  grid-template-columns: 1.4fr 1.4fr 0.8fr 1fr;
-
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 40px;
   align-items: start;
 }
 
-/* prevent shrink issue */
+/* prevent column shrink issue */
 .footer-grid > * {
   min-width: 0;
 }
 
-/* ABOUT */
+/* =========================
+   ABOUT
+========================= */
+
 .footer-about h4 {
   font-size: 18px;
   margin-bottom: 16px;
@@ -140,7 +154,10 @@ const popularPosts = [...posts]
   margin-bottom: 12px;
 }
 
-/* HEADINGS */
+/* =========================
+   HEADINGS
+========================= */
+
 .footer-links h4,
 .footer-service h4 {
   font-size: 18px;
@@ -148,46 +165,67 @@ const popularPosts = [...posts]
   color: #fff;
 }
 
-/* LINKS */
+/* =========================
+   LINKS STYLE
+========================= */
+
 .footer-links a,
 .footer-service a {
   display: block;
   color: var(--text-soft);
   font-size: 15px;
   line-height: 1.7;
+
   margin-bottom: 12px;
-  transition: .25s ease;
+
+  text-decoration: none;
+  transition: 0.25s ease;
 }
 
+/* hover */
 .footer-links a:hover,
 .footer-service a:hover {
   color: #fff;
   transform: translateX(4px);
 }
 
-/* SERVICE GRID (IMPORTANT FIX) */
+/* =========================
+   COMPANY + SOCIAL (STACK)
+========================= */
+
 .footer-service {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 28px;
 }
 
-/* COLUMN INTERNAL */
+.footer-col h4 {
+  margin-bottom: 14px;
+}
+
 .footer-col a {
   margin-bottom: 10px;
 }
 
-/* FOOTER BOTTOM */
+/* =========================
+   FOOTER BOTTOM
+========================= */
+
 .footer-bottom {
   margin-top: 70px;
   padding-top: 26px;
-  border-top: 1px solid rgba(255,255,255,.08);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
   text-align: center;
   color: var(--text-soft);
   font-size: 14px;
 }
 
-/* TABLET */
+/* =========================
+   TABLET
+========================= */
+
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
@@ -195,14 +233,27 @@ const popularPosts = [...posts]
   }
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 640px) {
   .footer-grid {
     grid-template-columns: 1fr;
   }
 
   .footer-service {
-    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .footer-links a,
+  .footer-service a {
+    font-size: 14px;
+  }
+
+  .footer-bottom {
+    margin-top: 50px;
+    font-size: 13px;
   }
 }
 </style>
