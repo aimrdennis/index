@@ -1,12 +1,23 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { SITE } from '../lib/site';
+import { getCollection } from 'astro:content';
+
+let posts = await getCollection('blog');
+
+const latestPosts = [...posts]
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))
+  .slice(0, 3);
+
+const popularPosts = [...posts]
+  .filter((post) => post.data.popular)
+  .slice(0, 3);
 
 const pageTitle =
-  'Ai Mr Dennis - Link, Tools, AI & Digital Creator';
+  'AI Mr Dennis - AI Tools, SEO Systems & Digital Platform';
 
 const pageDescription =
-  'Bio resmi Ai Mr Dennis untuk akses cepat ke tools, website, AI, social media, tutorial digital, SEO, automation, dan berbagai project modern.';
+  'AI Mr Dennis membangun aplikasi AI, SEO systems, automation tools dan platform digital modern untuk bisnis, creator dan internet ecosystem.';
 ---
 
 <MainLayout
@@ -18,30 +29,41 @@ const pageDescription =
   <!-- HERO -->
   <section class="hero">
     <div class="container">
+
       <div class="hero-grid">
 
         <div class="hero-left">
 
           <div class="hero-tag">
-            OFFICIAL BIO PAGE
+            AI • SEO • AUTOMATION
           </div>
 
           <h1>
-            Ai Mr Dennis
+            AI Mr Dennis
           </h1>
 
           <p>
-            Teknologi, AI, SEO, automation, tools digital modern dan berbagai project internet yang dibangun untuk performa cepat, clean dan modern.
+            AI developer Indonesia yang membangun aplikasi AI,
+            SEO systems, automation tools dan platform digital modern
+            untuk bisnis, creator dan internet ecosystem modern.
           </p>
 
           <div class="hero-btns">
-            <a href="https://aimrdennis.com" class="btn btn-primary">
+
+            <a
+              href="https://aimrdennis.com"
+              class="btn btn-primary"
+            >
               Official Website
             </a>
 
-            <a href="https://news.aimrdennis.com" class="btn btn-secondary">
+            <a
+              href="https://news.aimrdennis.com"
+              class="btn btn-secondary"
+            >
               Latest Articles
             </a>
+
           </div>
 
         </div>
@@ -49,58 +71,68 @@ const pageDescription =
         <div class="hero-right">
 
           <div class="hero-card">
+
             <div class="hero-badge">
-              AI & SEO
+              AI SYSTEMS
             </div>
 
             <h3>
-              Modern Digital
+              Modern AI Solutions
             </h3>
 
             <p>
-              AI tools, SEO systems, automation dan berbagai solusi digital modern.
+              AI tools, smart automation dan digital workflow modern
+              untuk produktivitas dan bisnis online.
             </p>
+
           </div>
 
           <div class="hero-card">
+
             <div class="hero-badge">
-              PERFORMANCE
+              SEO PERFORMANCE
             </div>
 
             <h3>
-              Ultra Fast
+              Fast & Optimized
             </h3>
 
             <p>
-              Dibangun ringan, mobile first, clean UI dan optimized untuk user modern.
+              Website ultra cepat, mobile first dan optimized
+              untuk modern search engine.
             </p>
+
           </div>
 
         </div>
 
       </div>
+
     </div>
   </section>
 
-  <!-- LINKS -->
+  <!-- MAIN ECOSYSTEM -->
   <section class="section">
     <div class="container">
 
       <h2 class="section-title">
-        Main Links
+        AI Tools & Digital Ecosystem
       </h2>
 
       <p class="section-desc">
-        Semua akses utama Ai Mr Dennis dalam satu halaman.
+        Platform, tools dan website utama dalam ecosystem AI Mr Dennis.
       </p>
 
       <div class="pricing">
 
         <div class="price-card">
-          <h3>Official Website</h3>
+
+          <h3>
+            Official Website
+          </h3>
 
           <p>
-            Website utama Ai Mr Dennis.
+            Website utama AI Mr Dennis untuk platform digital modern.
           </p>
 
           <a
@@ -111,13 +143,17 @@ const pageDescription =
           >
             Visit Website
           </a>
+
         </div>
 
         <div class="price-card">
-          <h3>News & Articles</h3>
+
+          <h3>
+            News & Articles
+          </h3>
 
           <p>
-            Artikel AI, SEO, teknologi dan digital modern terbaru.
+            Artikel AI, SEO, automation dan teknologi modern terbaru.
           </p>
 
           <a
@@ -128,13 +164,17 @@ const pageDescription =
           >
             Open News
           </a>
+
         </div>
 
         <div class="price-card">
-          <h3>Tools</h3>
+
+          <h3>
+            AI Tools
+          </h3>
 
           <p>
-            Kumpulan tools digital modern dan utility online.
+            Tools digital modern, utility online dan automation systems.
           </p>
 
           <a
@@ -145,6 +185,7 @@ const pageDescription =
           >
             Open Tools
           </a>
+
         </div>
 
       </div>
@@ -152,42 +193,54 @@ const pageDescription =
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <!-- SERVICES -->
   <section class="section">
     <div class="container">
 
       <h2 class="section-title">
-        What I Build
+        AI & Digital Services
       </h2>
 
       <p class="section-desc">
-        Fokus pada teknologi modern dan digital ecosystem.
+        Fokus pada AI systems, SEO technology dan digital platform modern.
       </p>
 
       <div class="features">
 
         <div class="feature-card">
-          <h3>AI Projects</h3>
+
+          <h3>
+            AI Projects
+          </h3>
 
           <p>
-            AI tools, automation system dan smart digital workflow.
+            AI applications, smart systems dan automation workflow modern.
           </p>
+
         </div>
 
         <div class="feature-card">
-          <h3>SEO Systems</h3>
+
+          <h3>
+            SEO Systems
+          </h3>
 
           <p>
-            Website cepat, optimized dan scalable untuk search engine modern.
+            Website optimized, scalable dan search engine friendly.
           </p>
+
         </div>
 
         <div class="feature-card">
-          <h3>Modern UI</h3>
+
+          <h3>
+            Modern UI
+          </h3>
 
           <p>
-            Minimal clean interface dengan performa ultra ringan.
+            Clean interface, ultra fast performance dan mobile first design.
           </p>
+
         </div>
 
       </div>
@@ -195,64 +248,84 @@ const pageDescription =
     </div>
   </section>
 
-  <!-- SOCIAL -->
+  <!-- LATEST ARTICLES -->
   <section class="section">
     <div class="container">
 
       <h2 class="section-title">
-        Social & Community
+        Latest AI Articles
       </h2>
 
       <p class="section-desc">
-        Follow dan terhubung dengan Ai Mr Dennis.
+        Artikel terbaru tentang AI, SEO dan teknologi modern.
       </p>
 
       <div class="pricing">
 
-        <div class="price-card">
-          <h3>Instagram</h3>
+        {
+          latestPosts.map((post) => (
+            <article class="price-card">
 
-          <p>
-            Update konten dan project terbaru.
-          </p>
+              <h3>
+                {post.data.title}
+              </h3>
 
-          <a
-            href="#"
-            class="btn btn-primary"
-          >
-            Follow
-          </a>
-        </div>
+              <p>
+                {post.data.description}
+              </p>
 
-        <div class="price-card">
-          <h3>YouTube</h3>
+              <a
+                href={`/blog/${post.slug}/`}
+                class="btn btn-primary"
+              >
+                Read Article
+              </a>
 
-          <p>
-            Tutorial teknologi, AI dan digital modern.
-          </p>
+            </article>
+          ))
+        }
 
-          <a
-            href="#"
-            class="btn btn-primary"
-          >
-            Subscribe
-          </a>
-        </div>
+      </div>
 
-        <div class="price-card">
-          <h3>Telegram</h3>
+    </div>
+  </section>
 
-          <p>
-            Community, update dan informasi terbaru.
-          </p>
+  <!-- POPULAR GUIDES -->
+  <section class="section">
+    <div class="container">
 
-          <a
-            href="#"
-            class="btn btn-primary"
-          >
-            Join Now
-          </a>
-        </div>
+      <h2 class="section-title">
+        Popular SEO & AI Guides
+      </h2>
+
+      <p class="section-desc">
+        Artikel populer dalam ecosystem AI Mr Dennis.
+      </p>
+
+      <div class="pricing">
+
+        {
+          popularPosts.map((post) => (
+            <article class="price-card">
+
+              <h3>
+                {post.data.title}
+              </h3>
+
+              <p>
+                {post.data.description}
+              </p>
+
+              <a
+                href={`/blog/${post.slug}/`}
+                class="btn btn-primary"
+              >
+                Read Guide
+              </a>
+
+            </article>
+          ))
+        }
 
       </div>
 
@@ -268,46 +341,64 @@ const pageDescription =
       </h2>
 
       <p class="section-desc">
-        Pertanyaan umum tentang Ai Mr Dennis.
+        Pertanyaan umum tentang AI Mr Dennis.
       </p>
 
       <div class="faq-item">
+
         <div class="faq-question">
-          <span>Apa itu Ai Mr Dennis?</span>
+          <span>
+            Apa itu AI Mr Dennis?
+          </span>
+
           <div class="faq-icon"></div>
         </div>
 
         <div class="faq-answer">
           <p>
-            Platform dan creator digital yang fokus pada AI, SEO, automation dan teknologi modern.
+            AI Mr Dennis adalah platform digital yang fokus pada
+            AI systems, SEO technology, automation dan website modern.
           </p>
         </div>
+
       </div>
 
       <div class="faq-item">
+
         <div class="faq-question">
-          <span>Apakah website mobile friendly?</span>
+          <span>
+            Apakah website mobile friendly?
+          </span>
+
           <div class="faq-icon"></div>
         </div>
 
         <div class="faq-answer">
           <p>
-            Ya, seluruh system dibangun mobile first dan optimized untuk performa cepat.
+            Ya, seluruh platform dibangun mobile first dan optimized
+            untuk performa cepat.
           </p>
         </div>
+
       </div>
 
       <div class="faq-item">
+
         <div class="faq-question">
-          <span>Apakah tersedia tools online?</span>
+          <span>
+            Apakah tersedia AI tools online?
+          </span>
+
           <div class="faq-icon"></div>
         </div>
 
         <div class="faq-answer">
           <p>
-            Ya, tersedia berbagai tools digital dan utility modern yang terus dikembangkan.
+            Ya, tersedia berbagai AI tools, utility online dan
+            automation systems modern.
           </p>
         </div>
+
       </div>
 
     </div>
@@ -318,18 +409,19 @@ const pageDescription =
     <div class="container">
 
       <h2>
-        Explore The Digital Ecosystem
+        Explore AI Tools & Modern SEO Systems
       </h2>
 
       <p>
-        AI, SEO, tools digital, automation dan project modern dalam satu ekosistem.
+        AI, SEO, automation dan digital ecosystem modern
+        dalam satu platform.
       </p>
 
       <a
         href="https://aimrdennis.com"
         class="btn btn-primary"
       >
-        Visit Now
+        Explore Now
       </a>
 
     </div>
