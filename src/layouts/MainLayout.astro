@@ -98,37 +98,24 @@ faqItems.forEach(item=>{
 
 <script is:inline>
 
-const savedTheme =
-  localStorage.getItem("theme");
+function toggleTheme(){
 
-if(
-  savedTheme === "light" ||
-  (
-    !savedTheme &&
-    window.matchMedia(
-      "(prefers-color-scheme: light)"
-    ).matches
-  )
-){
-  document.documentElement
-    .classList.add("light");
-}
-
-window.toggleTheme = function(){
-
-  document.documentElement
-    .classList.toggle("light");
+  document.body.classList.toggle("light");
 
   localStorage.setItem(
     "theme",
-
-    document.documentElement
-      .classList.contains("light")
-        ? "light"
-        : "dark"
+    document.body.classList.contains("light")
+      ? "light"
+      : "dark"
   );
 
-};
+}
+
+/* LOAD SAVED THEME */
+
+if(localStorage.getItem("theme") === "light"){
+  document.body.classList.add("light");
+}
 
 </script>
 
