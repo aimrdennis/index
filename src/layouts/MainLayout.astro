@@ -52,37 +52,21 @@ const faqSchema = generateFaqSchema(html);
 
 
 <script is:inline>
+  window.toggleTheme = function () {
+    const html = document.documentElement;
 
-/* LOAD THEME */
+    html.classList.toggle("light-mode");
 
-if(
-  localStorage.getItem("theme") === "light"
-){
-  document.documentElement
-    .classList.add("light-mode");
-}
+    localStorage.setItem(
+      "theme",
+      html.classList.contains("light-mode") ? "light" : "dark"
+    );
+  };
 
-/* TOGGLE */
-
-function toggleTheme(){
-
-  const html =
-    document.documentElement;
-
-  html.classList.toggle("light-mode");
-
-  localStorage.setItem(
-    "theme",
-
-    html.classList.contains("light-mode")
-      ? "light"
-      : "dark"
-  );
-
-}
-
+  if (localStorage.getItem("theme") === "light") {
+    document.documentElement.classList.add("light-mode");
+  }
 </script>
-
 
 <script is:inline>
 
