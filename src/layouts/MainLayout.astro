@@ -52,19 +52,21 @@ const faqSchema = generateFaqSchema(html);
   <Footer />
 
 <script is:inline>
-(() => {
 
-  const savedTheme = localStorage.getItem("theme");
+const html = document.documentElement;
 
-  if(savedTheme === "light"){
-    document.documentElement.classList.add("light-mode");
-  }
+const themeBtn =
+  document.getElementById("themeToggle");
 
-})();
+/* LOAD */
 
-window.toggleTheme = () => {
+if(localStorage.getItem("theme")==="light"){
+  html.classList.add("light-mode");
+}
 
-  const html = document.documentElement;
+/* TOGGLE */
+
+themeBtn?.addEventListener("click",()=>{
 
   html.classList.toggle("light-mode");
 
@@ -75,7 +77,8 @@ window.toggleTheme = () => {
       : "dark"
   );
 
-};
+});
+
 </script>
 
 <script is:inline>
