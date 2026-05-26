@@ -48,9 +48,9 @@ const faqSchema = generateFaqSchema(html);
 
   <Footer />
 
+<script>
 
-     <script is:inline>
-         function openMenu(){
+function openMenu(){
   document
     .getElementById("mobileMenu")
     .classList.add("active");
@@ -61,27 +61,6 @@ function closeMenu(){
     .getElementById("mobileMenu")
     .classList.remove("active");
 }
-
-/* FAQ */
-
-const faqItems =
-  document.querySelectorAll(".faq-item");
-
-faqItems.forEach(item=>{
-
-  item
-    .querySelector(".faq-question")
-    .addEventListener("click",()=>{
-
-      item.classList.toggle("active");
-
-    });
-
-});
-
-      </script>
-
-<script is:inline>
 
 function toggleTheme(){
 
@@ -101,6 +80,23 @@ function toggleTheme(){
 if(localStorage.getItem("theme") === "light"){
   document.body.classList.add("light");
 }
+
+/* FAQ */
+
+const faqItems =
+  document.querySelectorAll(".faq-item");
+
+faqItems.forEach(item=>{
+
+  item
+    .querySelector(".faq-question")
+    .addEventListener("click",()=>{
+
+      item.classList.toggle("active");
+
+    });
+
+});
 
 </script>
 
