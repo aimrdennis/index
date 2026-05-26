@@ -39,7 +39,7 @@ const faqSchema = generateFaqSchema(html);
 
 </head>
 
-<body class="dark">
+<body>
   <Header />
 
   <main>
@@ -48,7 +48,7 @@ const faqSchema = generateFaqSchema(html);
 
   <Footer />
 
-<script>
+<script is:inline>
 
 function openMenu(){
   document
@@ -62,23 +62,31 @@ function closeMenu(){
     .classList.remove("active");
 }
 
+/* THEME */
+
 function toggleTheme(){
 
-  document.body.classList.toggle("light");
+  document.body
+    .classList.toggle("light");
 
   localStorage.setItem(
     "theme",
-    document.body.classList.contains("light")
-      ? "light"
-      : "dark"
+
+    document.body
+      .classList.contains("light")
+        ? "light"
+        : "dark"
   );
 
 }
 
 /* LOAD SAVED THEME */
 
-if(localStorage.getItem("theme") === "light"){
-  document.body.classList.add("light");
+if(
+  localStorage.getItem("theme") === "light"
+){
+  document.body
+    .classList.add("light");
 }
 
 /* FAQ */
