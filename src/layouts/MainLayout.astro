@@ -84,10 +84,27 @@ faqItems.forEach(item=>{
 
 <script is:inline>
 
-/* LOAD THEME */
+/* AUTO THEME */
+
+const savedTheme =
+  localStorage.getItem("theme");
 
 if(
-  localStorage.getItem("theme") === "dark"
+
+  savedTheme === "dark"
+
+  ||
+
+  (
+
+    !savedTheme &&
+
+    window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches
+
+  )
+
 ){
   document.body.classList.add("dark");
 }
