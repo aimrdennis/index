@@ -34,7 +34,11 @@ const faqSchema = generateFaqSchema(html);
     amp={amp}
   />
   <link rel="stylesheet" href="/styles/global.css" />
-
+<script is:inline>
+  if (localStorage.getItem("theme") === "light") {
+    document.documentElement.classList.add("light-mode");
+  }
+</script>
 </head>
 
 <body>
@@ -45,6 +49,40 @@ const faqSchema = generateFaqSchema(html);
   </main>
 
   <Footer />
+
+
+<script is:inline>
+
+/* LOAD THEME */
+
+if(
+  localStorage.getItem("theme") === "light"
+){
+  document.documentElement
+    .classList.add("light-mode");
+}
+
+/* TOGGLE */
+
+function toggleTheme(){
+
+  const html =
+    document.documentElement;
+
+  html.classList.toggle("light-mode");
+
+  localStorage.setItem(
+    "theme",
+
+    html.classList.contains("light-mode")
+      ? "light"
+      : "dark"
+  );
+
+}
+
+</script>
+
 
 <script is:inline>
 
@@ -80,39 +118,5 @@ faqItems.forEach(item=>{
 
 </script>
 
-<script is:inline>
-
-window.toggleMenu = function(){
-  document
-    .getElementById("navMenu")
-    .classList.toggle("active");
-};
-
-window.toggleTheme = function(){
-
-  const html =
-    document.documentElement;
-
-  html.classList.toggle("light");
-
-  localStorage.setItem(
-    "theme",
-    html.classList.contains("light")
-      ? "light"
-      : "dark"
-  );
-
-};
-
-/* LOAD THEME */
-
-if(
-  localStorage.getItem("theme") === "light"
-){
-  document.documentElement
-    .classList.add("light");
-}
-
-</script>
 </body>
 </html>
