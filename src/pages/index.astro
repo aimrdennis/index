@@ -249,88 +249,158 @@ const pageDescription =
   </section>
 
   <!-- LATEST ARTICLES -->
-  <section class="section">
-    <div class="container">
+<!-- LATEST ARTICLES -->
+<section class="section">
 
-      <h2 class="section-title">
-        Latest AI Articles
-      </h2>
+  <div class="container">
 
-      <p class="section-desc">
-        Artikel terbaru tentang AI, SEO dan teknologi modern.
-      </p>
+    <h2 class="section-title">
+      Latest AI Articles
+    </h2>
 
-      <div class="pricing">
+    <p class="section-desc">
+      Artikel terbaru tentang AI, SEO dan teknologi modern.
+    </p>
 
-        {
-          latestPosts.map((post) => (
-            <article class="price-card">
+    <div class="pricing">
 
-              <h3>
-                {post.data.title}
-              </h3>
+      {
+        latestPosts.map((post) => (
 
-              <p>
-                {post.data.description}
-              </p>
+          <article class="price-card">
 
-              <a
-                href={`/blog/${post.slug}/`}
-                class="btn btn-primary"
-              >
-                Read Article
-              </a>
+            <!-- OG IMAGE -->
+            <a
+              href={`/blog/${post.slug}/`}
+              class="price-image"
+            >
 
-            </article>
-          ))
-        }
+              <img
+                src={SITE.url(`/api/og/${post.slug}.svg`)}
+                alt={post.data.title}
+                loading="lazy"
+                width="1200"
+                height="630"
+              />
 
-      </div>
+            </a>
 
-    </div>
-  </section>
+            <h3>
+              {post.data.title}
+            </h3>
 
-  <!-- POPULAR GUIDES -->
-  <section class="section">
-    <div class="container">
+            <p>
+              {post.data.description}
+            </p>
 
-      <h2 class="section-title">
-        Popular SEO & AI Guides
-      </h2>
+            <a
+              href={`/blog/${post.slug}/`}
+              class="btn btn-primary"
+            >
+              Read Article
+            </a>
 
-      <p class="section-desc">
-        Artikel populer dalam ecosystem AI Mr Dennis.
-      </p>
+          </article>
 
-      <div class="pricing">
-
-        {
-          popularPosts.map((post) => (
-            <article class="price-card">
-
-              <h3>
-                {post.data.title}
-              </h3>
-
-              <p>
-                {post.data.description}
-              </p>
-
-              <a
-                href={`/blog/${post.slug}/`}
-                class="btn btn-primary"
-              >
-                Read Guide
-              </a>
-
-            </article>
-          ))
-        }
-
-      </div>
+        ))
+      }
 
     </div>
-  </section>
+
+  </div>
+
+</section>
+
+<!-- POPULAR GUIDES -->
+<section class="section">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Popular SEO & AI Guides
+    </h2>
+
+    <p class="section-desc">
+      Artikel populer dalam ecosystem AI Mr Dennis.
+    </p>
+
+    <div class="pricing">
+
+      {
+        popularPosts.map((post) => (
+
+          <article class="price-card">
+
+            <!-- OG IMAGE -->
+            <a
+              href={`/blog/${post.slug}/`}
+              class="price-image"
+            >
+
+              <img
+                src={SITE.url(`/api/og/${post.slug}.svg`)}
+                alt={post.data.title}
+                loading="lazy"
+                width="1200"
+                height="630"
+              />
+
+            </a>
+
+            <h3>
+              {post.data.title}
+            </h3>
+
+            <p>
+              {post.data.description}
+            </p>
+
+            <a
+              href={`/blog/${post.slug}/`}
+              class="btn btn-primary"
+            >
+              Read Guide
+            </a>
+
+          </article>
+
+        ))
+      }
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+.price-image{
+  display:block;
+
+  overflow:hidden;
+
+  margin-bottom:18px;
+
+  border-radius:22px;
+
+  border:1px solid var(--border);
+
+  background:var(--card);
+}
+
+.price-image img{
+  width:100%;
+  height:auto;
+
+  display:block;
+
+  transition:transform .35s ease;
+}
+
+.price-card:hover .price-image img{
+  transform:scale(1.03);
+}
+</style>
 
   <!-- FAQ -->
   <section class="section">
