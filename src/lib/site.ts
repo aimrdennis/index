@@ -17,7 +17,8 @@ export const SITE = {
   image: "/images/og-cover.jpg",
 
   baseUrl,
-
+  domain: new URL(baseUrl).hostname,
+  
   url(path = "") {
     return `${baseUrl}/${path}`.replace(/([^:]\/)\/+/g, "$1");
   },
