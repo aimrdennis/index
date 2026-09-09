@@ -1,0 +1,207 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { SITE } from "../lib/site";
+import "../styles/pages.css";
+
+const pageTitle = "Disclaimer - AI Mr Dennis";
+
+const pageDescription =
+  "Disclaimer AI Mr Dennis mengenai informasi, artikel, tools, layanan, dan penggunaan konten yang tersedia di website.";
+
+const canonical = `${SITE.url()}/disclaimer`;
+---
+
+<MainLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonical}
+>
+
+  <!-- =====================================================
+       HERO
+  ====================================================== -->
+
+  <section class="page-hero">
+    <div class="page-container">
+
+      <span class="page-label">
+        DISCLAIMER
+      </span>
+
+      <h1>
+        Disclaimer AI Mr Dennis
+      </h1>
+
+      <p>
+        Informasi mengenai penggunaan konten, artikel,
+        tools, layanan, dan berbagai sumber informasi
+        yang tersedia di platform AI Mr Dennis.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       DISCLAIMER CONTENT
+  ====================================================== -->
+
+  <section class="page-section">
+    <div class="page-container page-legal">
+
+      <div class="page-legal-section">
+
+        <h2>
+          Informasi Umum
+        </h2>
+
+        <p>
+          Seluruh informasi yang tersedia di AI Mr Dennis
+          disediakan untuk tujuan informasi, edukasi,
+          dan referensi bagi pengguna.
+        </p>
+
+        <p>
+          Kami berusaha menyajikan informasi yang relevan
+          dan diperbarui, tetapi tidak menjamin bahwa seluruh
+          informasi selalu lengkap, akurat, atau sesuai dengan
+          kondisi terbaru.
+        </p>
+
+      </div>
+
+
+      <div class="page-legal-section">
+
+        <h2>
+          Penggunaan Informasi
+        </h2>
+
+        <p>
+          Pengguna bertanggung jawab atas keputusan yang
+          dibuat berdasarkan informasi yang ditemukan
+          di website AI Mr Dennis.
+        </p>
+
+        <p>
+          Informasi yang tersedia tidak dimaksudkan sebagai
+          pengganti nasihat profesional, terutama untuk
+          keputusan yang membutuhkan pertimbangan khusus.
+        </p>
+
+      </div>
+
+
+      <div class="page-legal-section">
+
+        <h2>
+          Tools dan Utility
+        </h2>
+
+        <p>
+          AI Mr Dennis menyediakan berbagai tools online
+          yang dapat membantu kebutuhan digital pengguna.
+          Hasil dari setiap tools dapat bergantung pada
+          input, konfigurasi, browser, serta kondisi teknis
+          yang digunakan.
+        </p>
+
+        <p>
+          Pengguna disarankan untuk memeriksa kembali hasil
+          sebelum menggunakannya untuk kebutuhan penting,
+          produksi, atau keputusan yang memiliki dampak besar.
+        </p>
+
+      </div>
+
+
+      <div class="page-legal-section">
+
+        <h2>
+          Tautan Eksternal
+        </h2>
+
+        <p>
+          Website ini dapat menyediakan tautan menuju
+          website atau layanan pihak ketiga.
+          AI Mr Dennis tidak mengendalikan isi, kebijakan,
+          keamanan, maupun perubahan yang terjadi pada
+          website eksternal tersebut.
+        </p>
+
+        <p>
+          Penggunaan layanan pihak ketiga sepenuhnya
+          mengikuti ketentuan dan kebijakan masing-masing
+          penyedia layanan.
+        </p>
+
+      </div>
+
+
+      <div class="page-legal-section">
+
+        <h2>
+          Perubahan Informasi
+        </h2>
+
+        <p>
+          Isi website, artikel, tools, fitur, maupun
+          informasi lainnya dapat diperbarui, diubah,
+          atau dihentikan sewaktu-waktu tanpa pemberitahuan
+          sebelumnya.
+        </p>
+
+        <p>
+          Kami dapat melakukan perubahan terhadap halaman
+          disclaimer ini apabila terdapat pembaruan pada
+          layanan atau kebijakan website.
+        </p>
+
+      </div>
+
+
+      <div class="page-legal-section">
+
+        <h2>
+          Persetujuan Pengguna
+        </h2>
+
+        <p>
+          Dengan mengakses dan menggunakan AI Mr Dennis,
+          pengguna dianggap telah memahami dan menyetujui
+          ketentuan yang tercantum dalam disclaimer ini.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       CTA
+  ====================================================== -->
+
+  <section class="page-cta">
+    <div class="page-container">
+
+      <h2>
+        Jelajahi AI Mr Dennis
+      </h2>
+
+      <p>
+        Temukan berbagai artikel, informasi teknologi,
+        dan tools digital yang tersedia di platform AI Mr Dennis.
+      </p>
+
+      <a
+        href="/tools/"
+        class="page-button"
+      >
+        Jelajahi Tools
+      </a>
+
+    </div>
+  </section>
+
+</MainLayout>
