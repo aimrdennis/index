@@ -1,25 +1,17 @@
 /* =============================================
    MAIN
 ============================================= */
-main.tools-page {
+
+main {
+  display: block;
+  width: 100%;
+  min-width: 0;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--text);
 }
-
-main{
-    display:block;
-
-    width:100%;
-    min-width:0;
-
-    margin:0;
-    padding:0;
-
-    background:var(--bg);
-    color:var(--text);
-}
-
 
 /* =============================================
    BREADCRUMB
