@@ -9,7 +9,6 @@ import Footer from "../components/Footer.astro";
 import { generateFaqSchema } from "../lib/faq-schema";
 import { homeSchema } from "../lib/home-schema";
 
-
 const {
   title,
   description,
@@ -19,21 +18,10 @@ const {
   breadcrumbs,
   amp,
   slug,
-  isHome = false,
-  pageCSS = []
+  isHome = false
 } = Astro.props;
 
-
-/* =====================================
-   PATHNAME
-===================================== */
-
 const pathname = Astro.url.pathname;
-
-/* =========================================
-   DETEKSI DETAIL TOOL
-   /tools/{kategori}/{slug}/
-========================================= */
 
 const segments = pathname
   .split("/")
@@ -43,40 +31,15 @@ const isToolPage =
   segments[0] === "tools" &&
   segments.length >= 3;
 
-/* =====================================
-   PAGE CSS
-===================================== */
+/* PAGE CSS */
+const isTools = pathname.startsWith("/tools");
 
-const cssMap = {
-  tools: toolsCSS
-};
-
-const autoPageCSS = [...pageCSS];
-
-
-/*
- * Semua halaman /tools otomatis
- * menggunakan tools.css
- */
-
-if (
-  pathname.startsWith("/tools") &&
-  !autoPageCSS.includes("tools")
-) {
-  autoPageCSS.push("tools");
-}
-
-
-/* =====================================
-   AUTO BREADCRUMBS
-===================================== */
-
+/* AUTO BREADCRUMBS */
 const autoBreadcrumbs =
   breadcrumbs ??
   (
-    pathname.startsWith("/tools")
+    isTools
       ? (() => {
-
           const parts = pathname
             .split("/")
             .filter(Boolean);
@@ -91,7 +54,6 @@ const autoBreadcrumbs =
           let path = "";
 
           for (const part of parts) {
-
             path += `/${part}`;
 
             items.push({
@@ -102,29 +64,19 @@ const autoBreadcrumbs =
                 ),
               url: path
             });
-
           }
 
           return items;
-
         })()
       : breadcrumbs
   );
 
-
-/* =====================================
-   FAQ SCHEMA
-===================================== */
-
-const faqSchema =
-  generateFaqSchema(html);
-
+/* FAQ SCHEMA */
+const faqSchema = generateFaqSchema(html);
 ---
 
 <!doctype html>
-
 <html lang="id">
-
 <head>
 
   <SeoHead
@@ -139,278 +91,146 @@ const faqSchema =
     isHome={isHome}
   />
 
+  {isTools && (
+    <link rel="stylesheet" href={toolsCSS} />
+  )}
 
-  <!-- =================================
-       PAGE CSS
-  ================================== -->
-
-  {
-    autoPageCSS.map((css) => (
-      cssMap[css] && (
-        <link
-          rel="stylesheet"
-          href={cssMap[css]}
-        />
-      )
-    ))
-  }
-
-
-  <!-- =================================
-       HOME SCHEMA
-  ================================== -->
-
-  {
-    isHome && (
-      <script
-        type="application/ld+json"
-        set:html={JSON.stringify(homeSchema)}
-      />
-    )
-  }
-
-
-  <!-- =================================
-       THEME INITIALIZATION
-  ================================== -->
+  {isHome && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(homeSchema)}
+    />
+  )}
 
   <script is:inline>
-
     (() => {
-
-      const savedTheme =
-        localStorage.getItem("theme");
+      const savedTheme = localStorage.getItem("theme");
 
       const systemTheme =
-        window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches
+        window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
           : "light";
 
       document.documentElement.dataset.theme =
         savedTheme || systemTheme;
-
     })();
-
   </script>
 
 </head>
-
 
 <body>
 
   <Header />
 
+  <main class={isTools ? "tools-page" : ""}>
 
-  <main>
+    {isTools && autoBreadcrumbs?.length > 1 && (
+      <nav
+        class="breadcrumb"
+        aria-label="Breadcrumb"
+      >
+        {autoBreadcrumbs.map((item, index) => (
+          <Fragment>
+            {index > 0 && (
+              <span class="separator">/</span>
+            )}
 
-
-    <!-- =================================
-         TOOLS BREADCRUMB
-    ================================== -->
-
-    {
-      pathname.startsWith("/tools") &&
-      autoBreadcrumbs &&
-      autoBreadcrumbs.length > 1 && (
-
-        <nav
-          class="breadcrumb"
-          aria-label="Breadcrumb"
-        >
-
-          {
-            autoBreadcrumbs.map(
-              (item, index) => (
-
-                <Fragment>
-
-                  {
-                    index > 0 && (
-                      <span class="separator">
-                        /
-                      </span>
-                    )
-                  }
-
-
-                  {
-                    index ===
-                    autoBreadcrumbs.length - 1
-                      ? (
-
-                          <span>
-                            {item.name}
-                          </span>
-
-                        )
-                      : (
-
-                          <a href={item.url}>
-                            {item.name}
-                          </a>
-
-                        )
-                  }
-
-                </Fragment>
-
-              )
-            )
-          }
-
-        </nav>
-
-      )
-    }
-
+            {index === autoBreadcrumbs.length - 1 ? (
+              <span>{item.name}</span>
+            ) : (
+              <a href={item.url}>
+                {item.name}
+              </a>
+            )}
+          </Fragment>
+        ))}
+      </nav>
+    )}
 
     <slot />
-    {
-      isToolPage && (
-        <RelatedTools />
-      )
-    }
+
+    {isToolPage && (
+      <RelatedTools />
+    )}
 
   </main>
 
-
-
   <Footer />
 
-
-  <!-- =================================
-       GLOBAL UI SCRIPT
-  ================================== -->
-
   <script is:inline>
+    const html = document.documentElement;
 
-    const html =
-      document.documentElement;
-
-
-    /* ================================
-       THEME
-    ================================= */
-
+    /* THEME */
     const themeToggle =
-      document.getElementById(
-        "themeToggle"
-      );
+      document.getElementById("themeToggle");
 
     const mediaQuery =
-      window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      );
-
+      window.matchMedia("(prefers-color-scheme: dark)");
 
     if (themeToggle) {
-
       themeToggle.onclick = () => {
-
         const nextTheme =
           html.dataset.theme === "dark"
             ? "light"
             : "dark";
 
-        html.dataset.theme =
-          nextTheme;
+        html.dataset.theme = nextTheme;
 
         localStorage.setItem(
           "theme",
           nextTheme
         );
-
       };
-
     }
-
 
     mediaQuery.addEventListener(
       "change",
       (event) => {
-
         const savedTheme =
           localStorage.getItem("theme");
 
         if (!savedTheme) {
-
           html.dataset.theme =
             event.matches
               ? "dark"
               : "light";
-
         }
-
       }
     );
 
-
-    /* ================================
-       MOBILE MENU
-    ================================= */
-
+    /* MOBILE MENU */
     const menu =
-      document.getElementById(
-        "menuToggle"
-      );
+      document.getElementById("menuToggle");
 
     const nav =
-      document.getElementById(
-        "nav"
-      );
-
+      document.getElementById("nav");
 
     if (menu && nav) {
-
       menu.onclick = () => {
-
-        nav.classList.toggle(
-          "active"
-        );
+        nav.classList.toggle("active");
 
         menu.textContent =
           nav.classList.contains("active")
             ? "✕"
             : "☰";
-
       };
-
 
       document
         .querySelectorAll(".nav a")
         .forEach((link) => {
-
           link.onclick = () => {
-
-            nav.classList.remove(
-              "active"
-            );
-
-            menu.textContent =
-              "☰";
-
+            nav.classList.remove("active");
+            menu.textContent = "☰";
           };
-
         });
-
     }
 
-
-    /* ================================
-       MOBILE DROPDOWN
-    ================================= */
-
+    /* MOBILE DROPDOWN */
     document
       .querySelectorAll(".drop-btn")
       .forEach((btn) => {
-
         btn.onclick = (event) => {
-
-          if (
-            window.innerWidth > 768
-          ) {
+          if (window.innerWidth > 768) {
             return;
           }
 
@@ -419,13 +239,9 @@ const faqSchema =
           btn.parentElement
             ?.classList
             .toggle("open");
-
         };
-
       });
-
   </script>
 
 </body>
-
 </html>
