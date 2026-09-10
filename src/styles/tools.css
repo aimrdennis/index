@@ -4,11 +4,23 @@
 
 main {
   display: block;
-  width: min(1200px, 100%);
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px;
   background: var(--bg);
   color: var(--text);
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 0 10px;
+  }
 }
 
 /* =============================================
