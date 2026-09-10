@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import toolsCSS from "../styles/tools.css?url";
-
+import RelatedTools from "../components/RelatedTools.astro";
 import SeoHead from "../components/SeoHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -258,7 +258,11 @@ const faqSchema =
 
   </main>
 
-
+{
+  pathname.startsWith("/tools") && (
+    <RelatedTools />
+  )
+}
   <Footer />
 
 
