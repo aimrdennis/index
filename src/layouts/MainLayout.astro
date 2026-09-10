@@ -30,6 +30,18 @@ const {
 
 const pathname = Astro.url.pathname;
 
+/* =========================================
+   DETEKSI DETAIL TOOL
+   /tools/{kategori}/{slug}/
+========================================= */
+
+const segments = pathname
+  .split("/")
+  .filter(Boolean);
+
+const isToolPage =
+  segments[0] === "tools" &&
+  segments.length >= 3;
 
 /* =====================================
    PAGE CSS
@@ -258,11 +270,13 @@ const faqSchema =
 
   </main>
 
-{
-  pathname.startsWith("/tools") && (
-    <RelatedTools />
-  )
-}
+
+    {
+      isToolPage && (
+        <RelatedTools />
+      )
+    }
+
   <Footer />
 
 
