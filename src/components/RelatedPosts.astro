@@ -52,20 +52,25 @@ const isTools = baseUrl === "/tools";
 }
 
 <style is:global>
-.related-posts{
-  margin-top:50px;
+.related-posts {
+  width: 100%;
+  margin-top: 50px;
 }
+
+.related-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+
 
 .related-posts h2{
   font-size:24px;
   margin-bottom:20px;
 }
 
-.related-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px;
-}
 
 .related-card{
   background:var(--card);
