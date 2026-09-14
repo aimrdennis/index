@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import toolsCSS from "../styles/tools.css?url";
 import RelatedTools from "../components/RelatedTools.astro";
 import SeoHead from "../components/SeoHead.astro";
 import Header from "../components/Header.astro";
@@ -18,7 +17,8 @@ const {
   breadcrumbs,
   amp,
   slug,
-  isHome = false
+  isHome = false,
+  pageCSS = []
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
@@ -31,10 +31,9 @@ const isToolPage =
   segments[0] === "tools" &&
   segments.length >= 3;
 
-/* PAGE CSS */
+/* AUTO BREADCRUMBS */
 const isTools = pathname.startsWith("/tools");
 
-/* AUTO BREADCRUMBS */
 const autoBreadcrumbs =
   breadcrumbs ??
   (
@@ -91,9 +90,13 @@ const faqSchema = generateFaqSchema(html);
     isHome={isHome}
   />
 
-  {isTools && (
-    <link rel="stylesheet" href={toolsCSS} />
-  )}
+  <!-- PAGE CSS -->
+  {pageCSS?.map((css) => (
+    <link
+      rel="stylesheet"
+      href={`/styles/${css}.css`}
+    />
+  ))}
 
   {isHome && (
     <script
@@ -117,6 +120,7 @@ const faqSchema = generateFaqSchema(html);
   </script>
 
 </head>
+
 
 <body>
 
