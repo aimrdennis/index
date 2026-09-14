@@ -17,8 +17,7 @@ const {
   breadcrumbs,
   amp,
   slug,
-  isHome = false,
-  pageCSS = []
+  isHome = false
 } = Astro.props;
 
 const pathname = Astro.url.pathname;
@@ -31,9 +30,10 @@ const isToolPage =
   segments[0] === "tools" &&
   segments.length >= 3;
 
-/* AUTO BREADCRUMBS */
+/* PAGE CSS */
 const isTools = pathname.startsWith("/tools");
 
+/* AUTO BREADCRUMBS */
 const autoBreadcrumbs =
   breadcrumbs ??
   (
@@ -90,13 +90,13 @@ const faqSchema = generateFaqSchema(html);
     isHome={isHome}
   />
 
-  <!-- PAGE CSS -->
-  {pageCSS?.map((css) => (
+  <!-- TOOLS CSS -->
+  {isTools && (
     <link
       rel="stylesheet"
-      href={`/styles/${css}.css`}
+      href="/styles/tools.css"
     />
-  ))}
+  )}
 
   {isHome && (
     <script
