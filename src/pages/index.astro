@@ -1,10 +1,10 @@
+
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import { SITE } from "../lib/site";
 import { getCollection } from "astro:content";
 
 import "../styles/home.css";
-
 
 /* =================================
    CONTENT COLLECTIONS
@@ -14,105 +14,82 @@ const posts = await getCollection("blog");
 const tools = await getCollection("tools");
 const products = await getCollection("product");
 
-
 /* =================================
    LATEST ARTICLES
 ================================= */
 
 const latestPosts = [...posts]
-  .sort(
-    (a, b) =>
-      new Date(b.data.pubDate).getTime() -
-      new Date(a.data.pubDate).getTime()
-  )
-  .slice(0, 3);
+  .sort((a, b) => {
+    const dateA = new Date(a.data.pubDate).getTime();
+    const dateB = new Date(b.data.pubDate).getTime();
 
+    return dateB - dateA;
+  })
+  .slice(0, 3);
 
 /* =================================
    POPULAR TOOLS
 ================================= */
 
-const popularTools =
-  tools.filter((tool) => tool.data.popular).length > 0
-    ? tools
-        .filter((tool) => tool.data.popular)
-        .slice(0, 3)
-    : tools.slice(0, 3);
-
+const popularTools = [
+  ...tools.filter((tool) => tool.data.popular),
+  ...tools.filter((tool) => !tool.data.popular),
+].slice(0, 3);
 
 /* =================================
    POPULAR PRODUCTS
 ================================= */
 
-const popularProducts =
-  products.filter((product) => product.data.popular).length > 0
-    ? products
-        .filter((product) => product.data.popular)
-        .slice(0, 3)
-    : products.slice(0, 3);
-
+const popularProducts = [
+  ...products.filter((product) => product.data.popular),
+  ...products.filter((product) => !product.data.popular),
+].slice(0, 3);
 
 /* =================================
    SEO
 ================================= */
 
 const pageTitle =
-  "AI Mr Dennis | AI Mr Ferdy — Ekosistem Teknologi AI";
+  "AI Mr Dennis — AI Tools & Teknologi Digital";
 
 const pageDescription =
-  "AI Mr Dennis adalah ekosistem teknologi AI independen yang dibangun oleh pengembang AI Mr Ferdy. Kami membuat berbagai tools AI, software, produk digital, dan eksperimen teknologi yang berfokus pada masalah nyata, dengan pengalaman yang sederhana dan mudah digunakan.";
----
+  "Kenali AI Mr Dennis, ekosistem teknologi AI independen yang dikembangkan oleh AI Mr Ferdy. Jelajahi AI tools, software, produk digital, artikel, dan eksperimen teknologi untuk berbagai kebutuhan digital.";
 
+const canonicalUrl = SITE.url();
+---
 
 <MainLayout
   title={pageTitle}
   description={pageDescription}
-  canonical={SITE.url()}
+  canonical={canonicalUrl}
   isHome={true}
 >
-
-
   <!-- =================================
        HERO
   ================================== -->
 
   <section class="hero">
-
     <div class="hero-container">
-
-
-      <!-- HERO CONTENT -->
-
       <div class="hero-content">
-
         <span class="hero-badge">
-          Website Resmi
+          Ekosistem Teknologi AI Independen
         </span>
 
-
-        <h1>
-          AI Mr Dennis
-        </h1>
-
+        <h1>AI Mr Dennis</h1>
 
         <h2 class="hero-subtitle">
-          Ekosistem teknologi AI independen untuk
-          tools, software, produk digital, dan eksperimen teknologi.
+          AI Tools, Software & Teknologi Digital untuk Produktivitas
         </h2>
 
-
         <p class="hero-description">
-          <strong>AI Mr Dennis</strong> adalah ekosistem teknologi
-          AI independen yang dibangun oleh pengembang
-          <strong>AI Mr Ferdy</strong>. Kami membuat berbagai
-          tools AI, software, produk digital, dan eksperimen
-          teknologi yang berfokus pada masalah nyata dengan
-          pengalaman yang sederhana dan mudah digunakan.
+          <strong>AI Mr Dennis</strong> adalah ekosistem teknologi AI
+          independen yang dikembangkan oleh <strong>AI Mr Ferdy</strong>.
+          Platform ini menghadirkan tools, software, produk digital,
+          artikel, dan eksperimen teknologi untuk membantu berbagai
+          kebutuhan digital.
         </p>
 
-
         <div class="hero-buttons">
-
           <a
             href="https://ai.termsofuse.workers.dev/"
             class="btn btn-primary"
@@ -122,416 +99,239 @@ const pageDescription =
             Gunakan AI Mr Dennis
           </a>
 
-
-          <a
-            href="/about/"
-            class="btn btn-outline"
-          >
+          <a href="/about/" class="btn btn-outline">
             Tentang AI Mr Dennis
           </a>
-
         </div>
-
-
-        <!-- HERO FEATURES -->
 
         <div class="hero-features">
-
-
           <article class="feature">
-
-            <p class="feature-title">
-              AI Tools
-            </p>
-
+            <p class="feature-title">AI Tools</p>
             <p>
-              Beragam tools berbasis AI untuk membantu
-              menyelesaikan berbagai kebutuhan digital
-              dengan lebih cepat.
+              Tools berbasis AI untuk mendukung berbagai kebutuhan
+              digital secara lebih praktis.
             </p>
-
           </article>
 
-
           <article class="feature">
-
-            <p class="feature-title">
-              SEO & Automation
-            </p>
-
+            <p class="feature-title">SEO & Automation</p>
             <p>
-              Pendekatan teknologi untuk mendukung
-              pengelolaan website, optimasi SEO,
-              dan workflow digital.
+              Eksplorasi optimasi website, SEO, dan workflow digital.
             </p>
-
           </article>
 
-
           <article class="feature">
-
-            <p class="feature-title">
-              Ekosistem Digital
-            </p>
-
+            <p class="feature-title">Ekosistem Digital</p>
             <p>
-              Satu ruang untuk menemukan tools,
-              artikel teknologi, informasi, dan
-              produk digital.
+              Temukan tools, artikel teknologi, proyek, dan produk
+              digital dalam satu website.
             </p>
-
           </article>
-
-
         </div>
-
       </div>
 
-
-      <!-- HERO IMAGE -->
-
       <div class="hero-image">
-
         <div class="glass-card">
-
           <img
             src={SITE.url("aimrdennis.png")}
             fetchpriority="high"
             width="640"
             height="640"
-            alt="AI Mr Dennis - Platform AI Indonesia"
+            alt="AI Mr Dennis, ekosistem teknologi AI"
           />
-
         </div>
-
 
         <div class="floating-card floating-card-top">
-
-          <p class="floating-title">
-            AI Platform
-          </p>
-
-          <p>
-            Modern • Cepat • Andal
-          </p>
-
+          <p class="floating-title">AI Platform</p>
+          <p>Teknologi • Tools • Digital</p>
         </div>
-
 
         <div class="floating-card floating-card-bottom">
-
-          <p class="floating-title">
-            Website Resmi
-          </p>
-
-          <p>
-            AI Mr Dennis Indonesia
-          </p>
-
+          <p class="floating-title">AI Mr Dennis</p>
+          <p>Dikembangkan oleh AI Mr Ferdy</p>
         </div>
-
       </div>
-
-
     </div>
 
-
     <div class="hero-wave"></div>
-
   </section>
-
-
 
   <!-- =================================
        ABOUT
   ================================== -->
 
   <section class="section">
-
     <div class="container-page">
-
       <div class="section-heading">
+        <span class="section-label">Tentang Ekosistem</span>
 
-        <span class="section-label">
-          Tentang Ekosistem
-        </span>
-
-        <h2 class="section-title">
-          Mengenal AI Mr Dennis
-        </h2>
+        <h2 class="section-title">Mengenal AI Mr Dennis</h2>
 
         <p class="section-desc">
-          AI Mr Dennis adalah ekosistem teknologi AI independen
-          yang dikembangkan oleh AI Mr Ferdy untuk mengeksplorasi
-          solusi digital yang praktis dan mudah digunakan.
+          Ekosistem teknologi AI independen yang dikembangkan oleh
+          AI Mr Ferdy untuk mengeksplorasi solusi digital yang praktis.
         </p>
-
       </div>
-
 
       <div class="content-card">
-
         <p>
-          Melalui satu ekosistem digital, pengguna dapat
-          menemukan tools AI, software, produk digital,
-          eksperimen teknologi, artikel, dan berbagai utilitas
-          yang dikembangkan untuk menjawab kebutuhan nyata.
+          Melalui satu ekosistem digital, pengguna dapat menemukan
+          tools AI, software, produk digital, eksperimen teknologi,
+          artikel, dan berbagai utilitas yang tersedia di website.
         </p>
 
-
         <p>
-          AI Mr Dennis dibangun dengan pendekatan sederhana:
-          teknologi harus mudah dipahami, mudah digunakan,
-          dan memiliki manfaat yang jelas. Pengembang AI Mr Ferdy
-          mengembangkan ekosistem ini secara independen sambil
-          terus mengeksplorasi ide dan eksperimen baru.
+          AI Mr Dennis dikembangkan dengan pendekatan yang berfokus
+          pada kemudahan penggunaan, kejelasan informasi, dan manfaat
+          praktis. Pengembangan dilakukan secara independen oleh
+          AI Mr Ferdy melalui proyek dan eksperimen teknologi digital.
         </p>
-
       </div>
-
     </div>
-
   </section>
-
-
 
   <!-- =================================
        ECOSYSTEM
   ================================== -->
 
   <section class="section">
-
     <div class="container-page">
-
       <div class="section-heading">
-
-        <span class="section-label">
-          Ekosistem
-        </span>
+        <span class="section-label">Ekosistem</span>
 
         <h2 class="section-title">
           AI, Software & Teknologi Digital
         </h2>
 
         <p class="section-desc">
-          Jelajahi bagian utama dari ekosistem AI Mr Dennis,
-          mulai dari website, artikel, hingga berbagai
-          tools digital yang tersedia.
+          Jelajahi informasi, artikel, tools, dan produk digital
+          yang tersedia dalam ekosistem AI Mr Dennis.
         </p>
-
       </div>
-
 
       <div class="content-grid">
-
-
         <article class="content-card">
+          <span class="card-label">Website</span>
 
-          <span class="card-label">
-            Website
-          </span>
-
-          <h3>
-            Official Website
-          </h3>
+          <h3>Official Website</h3>
 
           <p>
-            Pusat informasi dan layanan digital yang
-            berkaitan dengan AI Mr Dennis.
+            Pusat informasi tentang AI Mr Dennis dan proyek
+            teknologi digital yang dikembangkan.
           </p>
 
-          <a
-            href="/"
-            class="btn btn-primary"
-          >
+          <a href="/" class="btn btn-primary">
             Buka Website
           </a>
-
         </article>
 
-
         <article class="content-card">
+          <span class="card-label">Articles</span>
 
-          <span class="card-label">
-            Articles
-          </span>
-
-          <h3>
-            News & Articles
-          </h3>
+          <h3>News & Articles</h3>
 
           <p>
-            Informasi dan pembahasan seputar AI,
-            SEO, otomasi, teknologi, dan perkembangan
-            dunia digital.
+            Artikel dan panduan mengenai AI, SEO, otomasi,
+            software, dan perkembangan teknologi.
           </p>
 
-          <a
-            href="/blog/"
-            class="btn btn-primary"
-          >
+          <a href="/blog/" class="btn btn-primary">
             Baca Artikel
           </a>
-
         </article>
-
 
         <article class="content-card">
+          <span class="card-label">Tools</span>
 
-          <span class="card-label">
-            Tools
-          </span>
-
-          <h3>
-            AI Tools
-          </h3>
+          <h3>AI Tools</h3>
 
           <p>
-            Berbagai utilitas dan tools digital yang
-            dirancang untuk membantu pekerjaan menjadi
-            lebih praktis.
+            Jelajahi berbagai utilitas dan tools digital
+            yang tersedia untuk kebutuhan online.
           </p>
 
-          <a
-            href="/tools/"
-            class="btn btn-primary"
-          >
+          <a href="/tools/" class="btn btn-primary">
             Lihat Tools
           </a>
-
         </article>
-
-
       </div>
-
     </div>
-
   </section>
 
-
-
   <!-- =================================
-       SERVICES
+       PROJECTS & EXPERIMENTS
   ================================== -->
 
   <section class="section">
-
     <div class="container-page">
-
       <div class="section-heading">
+        <span class="section-label">Teknologi</span>
 
-        <span class="section-label">
-          Teknologi
-        </span>
-
-        <h2 class="section-title">
-          Projects & Experiments
-        </h2>
+        <h2 class="section-title">Projects & Experiments</h2>
 
         <p class="section-desc">
-          Berbagai proyek, software, eksperimen, dan pendekatan teknologi yang menjadi bagian dari pengembangan ekosistem AI Mr Dennis.
+          Eksplorasi proyek, software, antarmuka, dan pendekatan
+          teknologi yang menjadi bagian dari pengembangan ekosistem.
         </p>
-
       </div>
-
 
       <div class="content-grid">
-
-
         <article class="content-card">
-
-          <h3>
-            AI Projects
-          </h3>
+          <h3>AI Projects</h3>
 
           <p>
-            Eksplorasi aplikasi AI, sistem cerdas,
-            pemrosesan bahasa, dan otomasi workflow
+            Eksplorasi aplikasi AI, pemrosesan bahasa, dan otomasi
             untuk berbagai kebutuhan digital.
           </p>
-
         </article>
-
 
         <article class="content-card">
-
-          <h3>
-            SEO Systems
-          </h3>
+          <h3>SEO Systems</h3>
 
           <p>
-            Pendekatan teknis untuk membangun website
-            yang terstruktur, mudah dipahami mesin pencari,
-            dan siap dikembangkan.
+            Pendekatan teknis untuk membangun struktur website
+            yang mudah dinavigasi dan dipahami mesin pencari.
           </p>
-
         </article>
-
 
         <article class="content-card">
-
-          <h3>
-            Modern UI
-          </h3>
+          <h3>Modern UI</h3>
 
           <p>
-            Antarmuka yang responsif, sederhana,
-            cepat, dan nyaman digunakan pada berbagai
-            perangkat.
+            Eksplorasi antarmuka responsif yang dirancang agar
+            nyaman digunakan di berbagai perangkat.
           </p>
-
         </article>
-
-
       </div>
-
     </div>
-
   </section>
-
-
 
   <!-- =================================
        POPULAR TOOLS
   ================================== -->
 
-  <section class="section">
+  {popularTools.length > 0 && (
+    <section class="section">
+      <div class="container-page">
+        <div class="section-heading">
+          <span class="section-label">AI Tools</span>
 
-    <div class="container-page">
+          <h2 class="section-title">AI Tools Pilihan</h2>
 
-      <div class="section-heading">
+          <p class="section-desc">
+            Jelajahi tools yang tersedia dalam ekosistem
+            AI Mr Dennis.
+          </p>
+        </div>
 
-        <span class="section-label">
-          AI Tools
-        </span>
-
-        <h2 class="section-title">
-          AI Tools Pilihan
-        </h2>
-
-        <p class="section-desc">
-          Beberapa tools yang dapat membantu pekerjaan
-          digital menjadi lebih praktis dan efisien.
-        </p>
-
-      </div>
-
-
-      <div class="blog-grid">
-
-        {
-          popularTools.map((tool) => (
-
+        <div class="blog-grid">
+          {popularTools.map((tool) => (
             <article class="blog-card">
-
               <a
                 href={`/tools/${tool.slug}/`}
                 class="blog-card-link"
               >
-
-
                 <div class="blog-card-image">
-
                   <img
                     src={SITE.url(`/api/og/${tool.slug}.svg`)}
                     alt={tool.data.title}
@@ -539,96 +339,53 @@ const pageDescription =
                     width="1200"
                     height="630"
                   />
-
                 </div>
-
 
                 <div class="blog-card-content">
+                  <span class="card-label">AI Tool</span>
 
-                  <span class="card-label">
-                    AI Tool
-                  </span>
+                  <h3>{tool.data.title}</h3>
 
+                  {tool.data.description && (
+                    <p>{tool.data.description}</p>
+                  )}
 
-                  <h3>
-                    {tool.data.title}
-                  </h3>
-
-
-                  {
-                    tool.data.description && (
-
-                      <p>
-                        {tool.data.description}
-                      </p>
-
-                    )
-                  }
-
-
-                  <span class="readmore">
-                    Buka Tool →
-                  </span>
-
+                  <span class="readmore">Buka Tool →</span>
                 </div>
-
-
               </a>
-
             </article>
-
-          ))
-        }
-
+          ))}
+        </div>
       </div>
-
-    </div>
-
-  </section>
-
-
+    </section>
+  )}
 
   <!-- =================================
        LATEST ARTICLES
   ================================== -->
 
-  <section class="section">
+  {latestPosts.length > 0 && (
+    <section class="section">
+      <div class="container-page">
+        <div class="section-heading">
+          <span class="section-label">Blog</span>
 
-    <div class="container-page">
+          <h2 class="section-title">Artikel Terbaru</h2>
 
-      <div class="section-heading">
+          <p class="section-desc">
+            Informasi dan pembahasan mengenai AI, SEO,
+            teknologi, dan perkembangan dunia digital.
+          </p>
+        </div>
 
-        <span class="section-label">
-          Blog
-        </span>
-
-        <h2 class="section-title">
-          Artikel Terbaru
-        </h2>
-
-        <p class="section-desc">
-          Pembahasan terbaru mengenai AI, SEO,
-          teknologi, dan perkembangan dunia digital.
-        </p>
-
-      </div>
-
-
-      <div class="blog-grid">
-
-        {
-          latestPosts.map((post) => (
-
+        <div class="blog-grid">
+          {latestPosts.map((post) => (
             <article class="blog-card">
-
               <a
                 href={`/blog/${post.slug}/`}
                 class="blog-card-link"
               >
-
-
                 <div class="blog-card-image">
-
                   <img
                     src={SITE.url(`/api/og/${post.slug}.svg`)}
                     alt={post.data.title}
@@ -636,393 +393,239 @@ const pageDescription =
                     width="1200"
                     height="630"
                   />
-
                 </div>
-
 
                 <div class="blog-card-content">
+                  <time
+                    class="blog-card-meta"
+                    datetime={new Date(post.data.pubDate).toISOString()}
+                  >
+                    {new Date(post.data.pubDate).toLocaleDateString(
+                      "id-ID",
+                      {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric",
+                        timeZone: "UTC",
+                      }
+                    )}
+                  </time>
 
-                  <div class="blog-card-meta">
-                    {post.data.pubDate}
-                  </div>
+                  <h3>{post.data.title}</h3>
 
+                  {post.data.description && (
+                    <p>{post.data.description}</p>
+                  )}
 
-                  <h3>
-                    {post.data.title}
-                  </h3>
-
-
-                  {
-                    post.data.description && (
-
-                      <p>
-                        {post.data.description}
-                      </p>
-
-                    )
-                  }
-
-
-                  <span class="readmore">
-                    Baca Artikel →
-                  </span>
-
+                  <span class="readmore">Baca Artikel →</span>
                 </div>
-
-
               </a>
-
             </article>
-
-          ))
-        }
-
+          ))}
+        </div>
       </div>
-
-    </div>
-
-  </section>
-
-
+    </section>
+  )}
 
   <!-- =================================
        PRODUCTS
   ================================== -->
 
-  <section class="section">
+  {popularProducts.length > 0 && (
+    <section class="section">
+      <div class="container-page">
+        <div class="section-heading">
+          <span class="section-label">Produk Digital</span>
 
-    <div class="container-page">
+          <h2 class="section-title">Produk Digital Pilihan</h2>
 
-      <div class="section-heading">
+          <p class="section-desc">
+            Jelajahi produk digital yang tersedia untuk
+            kebutuhan teknologi dan aktivitas online.
+          </p>
+        </div>
 
-        <span class="section-label">
-          Produk Digital
-        </span>
+        <div class="blog-grid">
+          {popularProducts.map((product) => (
+            <article class="blog-card">
+              <a
+                href={`/product/${product.slug}/`}
+                class="blog-card-link"
+              >
+                <div class="blog-card-image">
+                  <img
+                    src={
+                      product.data.image ||
+                      SITE.url(`/api/og/${product.slug}.svg`)
+                    }
+                    alt={product.data.title}
+                    loading="lazy"
+                    width="1200"
+                    height="630"
+                  />
+                </div>
 
-        <h2 class="section-title">
-          Produk Digital Pilihan
-        </h2>
+                <div class="blog-card-content">
+                  <div class="product-card-top">
+                    <span class="card-label">
+                      {product.data.category || "Digital Product"}
+                    </span>
 
-        <p class="section-desc">
-          Produk digital yang dikembangkan untuk
-          membantu kebutuhan pengguna dalam aktivitas
-          teknologi dan pekerjaan online.
-        </p>
+                    {product.data.price && (
+                      <span class="product-price">
+                        {product.data.price}
+                      </span>
+                    )}
+                  </div>
 
+                  <h3>{product.data.title}</h3>
+
+                  {product.data.description && (
+                    <p>{product.data.description}</p>
+                  )}
+
+                  <span class="readmore">Lihat Produk →</span>
+                </div>
+              </a>
+            </article>
+          ))}
+        </div>
       </div>
-
-
- <div class="blog-grid">
-
-  {
-    popularProducts.map((product) => (
-
-      <article class="blog-card">
-
-        <a
-          href={`/product/${product.slug}/`}
-          class="blog-card-link"
-        >
-
-          <div class="blog-card-image">
-
-            <img
-              src={
-                product.data.image ||
-                SITE.url(`/api/og/${product.slug}.svg`)
-              }
-              alt={product.data.title}
-              loading="lazy"
-              width="1200"
-              height="630"
-            />
-
-          </div>
-
-<div class="blog-card-content">
-
-  <div class="product-card-top">
-
-    <span class="card-label">
-      {product.data.category || "Digital Product"}
-    </span>
-
-    {
-      product.data.price && (
-        <span class="product-price">
-          {product.data.price}
-        </span>
-      )
-    }
-
-  </div>
-
-  <h3>
-    {product.data.title}
-  </h3>
-
-  {
-    product.data.description && (
-      <p>
-        {product.data.description}
-      </p>
-    )
-  }
-
-  <span class="readmore">
-    Lihat Produk →
-  </span>
-
-</div>
-        </a>
-
-      </article>
-
-    ))
-  }
-
-</div>
-
-    </div>
-
-  </section>
-
-
+    </section>
+  )}
 
   <!-- =================================
        FAQ
   ================================== -->
 
   <section class="section">
-
     <div class="container-page">
-
       <div class="section-heading">
-
-        <span class="section-label">
-          FAQ
-        </span>
+        <span class="section-label">FAQ</span>
 
         <h2 class="section-title">
           Pertanyaan Umum tentang AI Mr Dennis
         </h2>
 
         <p class="section-desc">
-          Jawaban singkat mengenai platform, tools,
-          layanan, dan penggunaan AI Mr Dennis.
+          Informasi mengenai identitas, tools, dan penggunaan
+          ekosistem AI Mr Dennis.
         </p>
-
       </div>
-
 
       <div class="faq-list">
-
-
         <details class="faq-item">
-
           <summary class="faq-question">
-
-            <span>
-              Apa itu AI Mr Dennis?
-            </span>
-
+            <span>Apa itu AI Mr Dennis?</span>
             <span class="faq-icon"></span>
-
           </summary>
 
-
           <div class="faq-answer">
-
             <p>
-              AI Mr Dennis adalah platform digital yang
-              menghadirkan berbagai tools berbasis AI,
-              informasi teknologi, solusi otomasi,
-              SEO, serta produk digital untuk membantu
-              aktivitas online menjadi lebih praktis.
+              AI Mr Dennis adalah ekosistem teknologi AI independen
+              yang dikembangkan oleh AI Mr Ferdy. Website ini
+              menghadirkan informasi, proyek teknologi, tools,
+              artikel, dan produk digital yang tersedia.
             </p>
-
           </div>
-
         </details>
-
-
 
         <details class="faq-item">
-
           <summary class="faq-question">
-
-            <span>
-              Apa saja yang tersedia di AI Mr Dennis?
-            </span>
-
+            <span>Apa saja yang tersedia di AI Mr Dennis?</span>
             <span class="faq-icon"></span>
-
           </summary>
 
-
           <div class="faq-answer">
-
             <p>
-              Pengguna dapat menemukan AI tools,
-              artikel mengenai teknologi dan SEO,
-              solusi otomasi, serta berbagai produk
-              digital yang menjadi bagian dari ekosistem
-              AI Mr Dennis.
+              Pengguna dapat menjelajahi artikel, tools, proyek,
+              dan produk digital yang dipublikasikan pada website.
+              Ketersediaan setiap fitur bergantung pada proyek
+              yang telah dirilis.
             </p>
-
           </div>
-
         </details>
-
-
 
         <details class="faq-item">
-
           <summary class="faq-question">
-
-            <span>
-              Apakah AI Mr Dennis menyediakan tools gratis?
-            </span>
-
+            <span>Apakah AI Mr Dennis menyediakan tools gratis?</span>
             <span class="faq-icon"></span>
-
           </summary>
 
-
           <div class="faq-answer">
-
             <p>
-              Ya. Sebagian tools dapat digunakan secara
-              gratis. Layanan atau fitur tertentu dapat
-              menyediakan pilihan premium dengan kemampuan
-              tambahan.
+              Ketentuan penggunaan dan biaya dapat berbeda untuk
+              setiap tool. Periksa informasi pada halaman tool
+              yang ingin digunakan untuk mengetahui ketentuannya.
             </p>
-
           </div>
-
         </details>
-
-
 
         <details class="faq-item">
-
           <summary class="faq-question">
-
-            <span>
-              Apakah AI Mr Dennis bisa digunakan di smartphone?
-            </span>
-
+            <span>Apakah AI Mr Dennis bisa digunakan di smartphone?</span>
             <span class="faq-icon"></span>
-
           </summary>
 
-
           <div class="faq-answer">
-
             <p>
-              Ya. Website dan tools dirancang agar dapat
-              digunakan melalui smartphone, tablet,
-              maupun komputer dengan tampilan yang
-              menyesuaikan ukuran layar.
+              Website dirancang untuk menyesuaikan berbagai ukuran
+              layar. Pengalaman penggunaan setiap layanan dapat
+              bergantung pada fitur dan perangkat yang digunakan.
             </p>
-
           </div>
-
         </details>
-
-
 
         <details class="faq-item">
-
           <summary class="faq-question">
-
-            <span>
-              Apakah AI Mr Dennis cocok untuk kebutuhan digital?
-            </span>
-
+            <span>Siapa pengembang AI Mr Dennis?</span>
             <span class="faq-icon"></span>
-
           </summary>
 
-
           <div class="faq-answer">
-
             <p>
-              Ekosistem AI Mr Dennis ditujukan untuk berbagai
-              kebutuhan digital, termasuk eksplorasi AI,
-              pembuatan konten, pengelolaan website,
-              SEO, otomasi, dan penggunaan tools online.
+              AI Mr Dennis dikembangkan secara independen oleh
+              AI Mr Ferdy. Informasi tambahan mengenai proyek
+              dan pengembang dapat ditemukan pada halaman
+              <a href="/about/">Tentang Kami</a>.
             </p>
-
           </div>
-
         </details>
-
-
 
         <details class="faq-item">
-
           <summary class="faq-question">
-
-            <span>
-              Di mana website resmi AI Mr Dennis?
-            </span>
-
+            <span>Di mana website resmi AI Mr Dennis?</span>
             <span class="faq-icon"></span>
-
           </summary>
 
-
           <div class="faq-answer">
-
             <p>
-              Website utama AI Mr Dennis dapat diakses
-              melalui domain
-              <strong>{SITE.domain}</strong>.
-              Website ini menjadi pusat informasi,
-              artikel, tools, dan produk digital
-              yang berkaitan dengan ekosistem AI Mr Dennis.
+              Website utama AI Mr Dennis dapat diakses melalui
+              <a href={SITE.url()}>{SITE.domain}</a>.
+              Website ini menjadi pusat informasi mengenai
+              ekosistem AI Mr Dennis.
             </p>
-
           </div>
-
         </details>
-
-
       </div>
-
     </div>
-
   </section>
-
-
 
   <!-- =================================
        CTA
   ================================== -->
 
   <section class="cta">
-
     <div class="container-page">
-
       <div class="cta-content">
+        <span class="section-label">Mulai Sekarang</span>
 
-        <span class="section-label">
-          Mulai Sekarang
-        </span>
-
-
-        <h2>
-          Jelajahi AI Tools dan Teknologi Digital
-        </h2>
-
+        <h2>Jelajahi AI Tools dan Teknologi Digital</h2>
 
         <p>
-          Temukan berbagai tools, artikel, dan solusi
-          digital yang dirancang untuk membantu aktivitas
-          online menjadi lebih sederhana.
+          Temukan tools, artikel, proyek, dan solusi digital
+          yang tersedia dalam ekosistem AI Mr Dennis.
         </p>
-
 
         <a
           href="https://ai.termsofuse.workers.dev/"
@@ -1030,54 +633,51 @@ const pageDescription =
           target="_blank"
           rel="noopener noreferrer"
         >
-          Mulai Menjelajah
+          Gunakan AI Mr Dennis
         </a>
-
       </div>
-
     </div>
-
   </section>
 
-<style is:global>
-.product-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-}
+  <!-- =================================
+       PRODUCT CARD CSS
+  ================================== -->
 
-.product-price {
-  flex-shrink: 0;
+  <style is:global>
+    .product-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
 
-  padding: 7px 11px;
-  border: 1px solid rgba(59, 130, 246, .25);
-  border-radius: 9px;
+    .product-price {
+      flex-shrink: 0;
+      padding: 7px 11px;
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 9px;
+      background: rgba(59, 130, 246, 0.08);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1;
+      white-space: nowrap;
+    }
 
-  background: rgba(59, 130, 246, .08);
-  color: var(--primary);
+    .blog-card-content h3 {
+      margin-top: 0;
+    }
 
-  font-size: 13px;
-  font-weight: 800;
-  line-height: 1;
-  white-space: nowrap;
-}
+    @media (max-width: 640px) {
+      .product-card-top {
+        gap: 8px;
+      }
 
-.blog-card-content h3 {
-  margin-top: 0;
-}
-
-@media (max-width: 640px) {
-  .product-card-top {
-    gap: 8px;
-  }
-
-  .product-price {
-    padding: 6px 9px;
-    font-size: 12px;
-  }
-}
-</style>
-
+      .product-price {
+        padding: 6px 9px;
+        font-size: 12px;
+      }
+    }
+  </style>
 </MainLayout>
